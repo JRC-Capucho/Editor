@@ -3,7 +3,7 @@ return {
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require('gitsigns').setup()
-			vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<cr>", {})
+			vim.keymap.set("n", "<leader>gh", ":Gitsigns preview_hunk<cr>", {})
 		end,
 	},
   {
@@ -11,6 +11,7 @@ return {
     config = function ()
       require('git').setup()
       vim.keymap.set("n","<leader>gc",":Git commit<cr>",{})
+      vim.keymap.set("n","<leader>gp",":Git push<cr>",{})
     end
   }
 }
