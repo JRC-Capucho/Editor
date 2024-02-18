@@ -53,16 +53,17 @@ keymap.set("n", "<C-w><right>", "<C-w>>")
 keymap.set("n", "<C-w><up>", "<C-w>+")
 keymap.set("n", "<C-w><down>", "<C-w>-")
 
-
 -- Neo Tree
-keymap.set("n","\\\\",vim.cmd.Neotree)
+keymap.set("n", "\\\\", vim.cmd.Neotree)
 
 -- OIL
-keymap.set("n","sf",":Oil --float<cr>")
-
+keymap.set("n", "sf", ":Oil --float<cr>")
 
 -- LSP
-keymap.set("n","K", vim.lsp.buf.hover, {})
-keymap.set("n","<leader>ca", vim.lsp.buf.code_action, {})
-
-
+keymap.set("n", "K", vim.lsp.buf.hover, {})
+keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, {})
+keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+keymap.set("n", "K", vim.lsp.buf.hover, opts)
+keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+keymap.set("n", "J", vim.diagnostic.goto_next, opts)

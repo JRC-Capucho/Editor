@@ -12,5 +12,9 @@ return {
 		lspconfig.tsserver.setup({
 			capabilities = capabilities,
 		})
+
+		lspconfig.prismals.setup({
+			capabilities = capabilities,
+		})
 	end,
 }
