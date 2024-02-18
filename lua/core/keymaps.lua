@@ -58,7 +58,7 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 keymap.set("n","\\\\",vim.cmd.Neotree)
 
 -- OIL
-keymap.set("n","sf","<cmd>Oil --float<cr>")
+keymap.set("n","sf",":Oil --float<cr>")
 
 
 -- LSP
