@@ -20,6 +20,8 @@ return {
     })
 
     require "telescope".load_extension("ui-select")
+    require "telescope".load_extension("noice")
+
 
     local builtin = require('telescope.builtin')
     vim.keymap.set('n', ';f', builtin.find_files, {})
