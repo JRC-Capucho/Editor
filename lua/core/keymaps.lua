@@ -67,3 +67,4 @@ keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 keymap.set("n", "K", vim.lsp.buf.hover, opts)
 keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 keymap.set("n", "J", vim.diagnostic.goto_next, opts)
+
