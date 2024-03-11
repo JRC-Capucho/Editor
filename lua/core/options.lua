@@ -1,6 +1,6 @@
 local opt = vim.opt
 
-vim.g.mapleader = "\\"
+vim.g.mapleader = " "
 
 vim.scriptencoding = "utf-8"
 opt.encoding = "utf-8"
@@ -30,8 +30,8 @@ opt.inccommand = "split"
 opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
 opt.smarttab = true
 opt.breakindent = true
-opt.shiftwidth = 4
-opt.tabstop = 4
+opt.shiftwidth = 2
+opt.tabstop = 2
 opt.wrap = false          -- No Wrap lines
 opt.backspace = { "start", "eol", "indent" }
 opt.path:append({ "**" }) -- Finding files - Search down into subfolders
@@ -44,15 +44,5 @@ opt.signcolumn = "yes"
 opt.splitright = true
 opt.splitbelow = true
 opt.cursorline = true
-
-opt.guicursor = {
-    "n-v-c:block",                               -- Normal, visual, command-line: block cursor
-    "i-ci-ve:ver25",                             -- Insert, command-line insert, visual-exclude: vertical bar cursor with 25% width
-    "r-cr:hor20",                                -- Replace, command-line replace: horizontal bar cursor with 20% height
-    "o:hor50",                                   -- Operator-pending: horizontal bar cursor with 50% height
-    "a:blinkwait700-blinkoff400-blinkon250",     -- All modes: blinking settings
-    "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
-}
-
 vim.o.clipboard = "unnamedplus"
 

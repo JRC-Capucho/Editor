@@ -12,6 +12,8 @@ return {
 				"markdown",
 				"markdown_inline",
 				"bash",
+        "query",
+        "vimdoc",
 			},
 			sync_install = false,
 			highlight = { enable = true },
