@@ -14,7 +14,8 @@ return {
         "bash",
         "query",
         "vimdoc",
-        "sql"
+        "sql",
+        "norg",
       },
       sync_install = false,
       highlight = { enable = true },
