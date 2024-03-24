@@ -58,4 +58,4 @@ map("n", "gd", vim.lsp.buf.definition, { silent = true, desc = "Definition" })
 map("n", "gi", vim.lsp.buf.implementation, { silent = true, desc = "Implementation" })
 map("n", "J", vim.diagnostic.goto_next, { silent = true, desc = "Diagnostic" })
 
-
+map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
