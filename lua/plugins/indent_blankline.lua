@@ -1,20 +1,28 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
     opts = {
       indent = {
-        char = "▏",
-        priority = 2,
+        char = "│",
+        tab_char = "│",
       },
-      whitespace = {
-        highlight = { "Whitespace", "NonText" },
-      },
-      scope = {
-        show_start = true,
-        show_end = true,
-        show_exact_scope = true,
+      scope = { enabled = false },
+      exclude = {
+        filetypes = {
+          "help",
+          "alpha",
+          "dashboard",
+          "neo-tree",
+          "Trouble",
+          "trouble",
+          "lazy",
+          "mason",
+          "notify",
+          "toggleterm",
+          "lazyterm",
+        },
       },
     },
+    main = "ibl"
   },
 }
