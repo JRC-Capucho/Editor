@@ -1,15 +1,16 @@
 return {
-  "alexghergh/nvim-tmux-navigation",
-  config = function()
-    local nvim_tmux_nav = require("nvim-tmux-navigation")
-
-    nvim_tmux_nav.setup({
-      disable_when_zoomed = true,
-    })
-
-    vim.keymap.set("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft, { desc = "Navigate Left" })
-    vim.keymap.set("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown, { desc = "Navigate Down" })
-    vim.keymap.set("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp, { desc = "Navigate Up" })
-    vim.keymap.set("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight, { desc = "Navigate Right" })
-  end,
+  "christoomey/vim-tmux-navigator",
+  cmd = {
+    "TmuxNavigateLeft",
+    "TmuxNavigateDown",
+    "TmuxNavigateUp",
+    "TmuxNavigateRight",
+    "TmuxNavigatePrevious",
+  },
+  keys = {
+    { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>",  desc = "Navigate Left" },
+    { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>",  desc = "Navigate Down" },
+    { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>",    desc = "Navigate Up" },
+    { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>", desc = "Navigate Right" },
+  },
 }

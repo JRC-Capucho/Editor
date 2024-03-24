@@ -1,12 +1,15 @@
 return {
   {
     "onsails/lspkind.nvim",
+    lazy = true,
   },
   {
     "hrsh7th/cmp-nvim-lsp",
+    lazy = true,
   },
   {
     "L3MON4D3/LuaSnip",
+    lazy = true,
     dependencies = {
       "saadparwaiz1/cmp_luasnip",
       "rafamadriz/friendly-snippets",
@@ -17,6 +20,8 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    lazy = true,
     config = function()
       local cmp = require("cmp")
       local lspkind = require("lspkind")
@@ -59,6 +64,7 @@ return {
   },
   {
     "hrsh7th/cmp-cmdline",
+    lazy = true,
     config = function()
       local cmp = require 'cmp'
       -- `/` cmdline setup.

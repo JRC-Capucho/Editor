@@ -16,7 +16,7 @@ return {
 					name = "+git",
 				},
 				h = {
-					name = "+harpoon",
+					name = "+gitsigns",
 				},
 				o = {
 					name = "+obsidian",

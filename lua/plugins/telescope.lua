@@ -1,8 +1,41 @@
 return {
   'nvim-telescope/telescope.nvim',
-  tag = '0.1.5',
+  lazy = true,
+  keys = {
+    {
+      ';f',
+      function()
+        require 'telescope.builtin'.find_files()
+      end
+      ,
+      desc = "Find File"
+    },
+    {
+      ';r',
+      function()
+        require 'telescope.builtin'.live_grep()
+      end
+      ,
+      desc = "Search Grep"
+    },
+    {
+      ';;',
+      function()
+        require 'telescope.builtin'.buffers()
+      end
+      ,
+      desc = "Last Search Mode"
+    },
+    {
+      ';s',
+      function()
+        require 'telescope.builtin'.treesitter()
+      end
+      ,
+      desc = "Search var, func etc..."
+    },
+  },
   dependencies = {
-    { 'nvim-lua/plenary.nvim' },
     { 'nvim-telescope/telescope-ui-select.nvim' },
   },
   config = function()
@@ -22,12 +55,5 @@ return {
 
     require "telescope".load_extension("ui-select")
     require "telescope".load_extension("noice")
-    require "telescope".load_extension("harpoon")
-
-    local builtin = require('telescope.builtin')
-    vim.keymap.set('n', ';f', builtin.find_files, { desc = "Find File" })
-    vim.keymap.set('n', ';r', builtin.live_grep, { desc = "Search Grep" })
-    vim.keymap.set('n', ';;', builtin.buffers, { desc = "Last Search Mode" })
-    vim.keymap.set('n', ';s', builtin.treesitter, { desc = "Search var, func etc..." })
   end
 }

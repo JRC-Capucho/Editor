@@ -1,55 +1,58 @@
 return {
   {
     "rcarriga/nvim-notify",
-    config = function()
-      require 'notify'.setup({
-        render = "minimal",
-        stages = "slide",
-      })
-    end,
+    event = "VeryLazy",
+    lazy = false,
+    opts = {
+      render = "minimal",
+      stages = "slide",
+      timeout = 1000
+    }
   },
   {
     "folke/noice.nvim",
     event = "VeryLazy",
+    lazy = false,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
-    config = function()
-      require("noice").setup({
-        lsp = {
-          override = {
-            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-            ["vim.lsp.util.stylize_markdown"] = true,
-            ["cmp.entry.get_documentation"] = true,
-          },
+    opts = {
+      lsp = {
+        override = {
+          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+          ["vim.lsp.util.stylize_markdown"] = true,
+          ["cmp.entry.get_documentation"] = true,
         },
-        presets = {
-          bottom_search = true,
-          command_palette = true,
-          long_message_to_split = true,
-          inc_rename = true,
-          lsp_doc_border = true,
-        },
-        hover = {
-          enabled = true,
-          silent = false,
-          view = nil,
-          opts = {},
-        },
-      })
+      },
+      presets = {
+        bottom_search = true,
+        command_palette = true,
+        long_message_to_split = true,
+        inc_rename = true,
+        lsp_doc_border = true,
+      },
+      hover = {
+        enabled = true,
+        silent = false,
+        view = nil,
+        opts = {},
+      },
+    },
+    options = function(_, opts)
+      local map = vim.keymap.set
 
-      vim.keymap.set({ "n", "i", "s" }, "<c-f>", function()
+      map({ "n", "i", "s" }, "<c-f>", function()
         if not require("noice.lsp").scroll(4) then
           return "<c-f>"
         end
-      end, { silent = true, expr = true })
+      end, { silent = true, expr = true, desc = "Scroll up doc" })
 
-      vim.keymap.set({ "n", "i", "s" }, "<c-b>", function()
+      map({ "n", "i", "s" }, "<c-d>", function()
         if not require("noice.lsp").scroll(-4) then
-          return "<c-b>"
+          return "<c-d>"
         end
-      end, { silent = true, expr = true })
+      end, { silent = true, expr = true, desc = "Scroll down doc" })
     end,
   },
 }
