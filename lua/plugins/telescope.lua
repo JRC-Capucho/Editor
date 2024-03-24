@@ -1,5 +1,6 @@
 return {
   'nvim-telescope/telescope.nvim',
+  cmd = "Telescope",
   lazy = true,
   keys = {
     {
@@ -40,19 +41,15 @@ return {
   },
   config = function()
     require 'telescope'.setup({
-      pickers = {
-        find_files = {
-          theme = "ivy",
+      layout_strategy = "horizontal",
+      layout_config = {
+        horizontal = {
+          prompt_position = "top",
+          preview_width = 0.55,
+          results_width = 0.8,
         }
-      },
-
-      extensions = {
-        ["ui-select"] = {
-          require("telescope.themes").get_dropdown {}
-        }
-      },
+      }
     })
-
     require "telescope".load_extension("ui-select")
     require "telescope".load_extension("noice")
   end
