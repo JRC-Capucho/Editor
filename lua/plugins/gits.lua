@@ -11,7 +11,7 @@ return {
 			changedelete = { text = "~" },
 		},
 	},
-	on_attach = function(buffer)
+	config = function(buffer)
 		local gs = package.loaded.gitsigns
 
 		local function map(mode, l, r, desc)
