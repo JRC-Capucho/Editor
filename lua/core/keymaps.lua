@@ -59,3 +59,5 @@ map("n", "gi", vim.lsp.buf.implementation, { silent = true, desc = "Implementati
 map("n", "J", vim.diagnostic.goto_next, { silent = true, desc = "Diagnostic" })
 
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "Terminal Escape terminal mode" })
+
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })

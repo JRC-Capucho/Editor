@@ -1,93 +1,36 @@
 return {
-  {
-    "lewis6991/gitsigns.nvim",
-    event = "BufWrite",
-    lazy = true,
-    keys = {
-      {
-        "<leader>hS",
-        function()
-          require "gitsigns".stage_buffer()
-        end
-        ,
-        desc = "Stage buffer"
-      },
-      {
-        "<leader>ha",
-        function()
-          require 'gitsigns'.stage_hunk()
-        end
-        ,
-        desc = "Stage Hunk"
-      },
-      {
-        "<leader>hu",
-        function()
-          require('gitsigns').undo_stage_hunk()
-        end
-        ,
-        desc = "Undo Stage Hunk"
-      },
-      {
-        "<leader>hR",
-        function()
-          require 'gitsigns'.reset_buffer()
-        end
-        ,
-        desc = "Reset Buffer"
-      },
-      {
-        "<leader>hp",
-        function()
-          require 'gitsigns'.preview_hunk()
-        end
-        ,
-        desc = "Preview hunk"
-      },
-      {
-        "<leader>hb",
-        function()
-          require 'gitsigns'.blame_line({ full = true })
-        end,
-        desc = "Blame line"
-      },
-      {
-        "<leader>tb",
-        function()
-          require 'gitsigns'.toggle_current_line_blame()
-        end,
-        desc = "Toggle line Blame"
-      },
-      {
-        "<leader>hd",
-        function()
-          require 'gitsigns'.diffthis()
-        end,
-        desc = "Diff"
-      },
-      {
-        "<leader>hD",
-        function()
-          require 'gitsigns'.diffthis("~")
-        end,
-        desc = "Diff this"
-      },
-      {
-        "<leader>td",
-        function()
-          require 'gitsigns'.toggle_deleted()
-        end,
-        desc = "Toggle Deleted"
-      }
-    },
-    opts = {
-      signs = {
-        add = { text = "+" },
-        change = { text = "~" },
-        delete = { text = "_" },
-        topdelete = { text = "‾" },
-        changedelete = { text = "~" },
-      }
-    }
-  },
+	"lewis6991/gitsigns.nvim",
+	event = "BufWrite",
+	lazy = true,
+	opts = {
+		signs = {
+			add = { text = "+" },
+			change = { text = "~" },
+			delete = { text = "_" },
+			topdelete = { text = "‾" },
+			changedelete = { text = "~" },
+		},
+	},
+	on_attach = function(buffer)
+		local gs = package.loaded.gitsigns
+
+		local function map(mode, l, r, desc)
+			vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+		end
+
+		map("n", "<leader>hS", gs.stage_buffer, { desc = "Stage buffer" })
+		map("n", "<leader>ha", gs.stage_hunk, { desc = "Stage Hunk" })
+		map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "Undo Stage Hunk" })
+		map("n", "<leader>hR", gs.reset_buffer, { desc = "Reset Buffer" })
+		map("n", "<leader>hp", gs.preview_hunk, { desc = "Preview hunk" })
+		map("n", "<leader>hb", function()
+			gs.blame_line({ full = true })
+		end, { desc = "Blame line" })
+		map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "Toggle line Blame" })
+		map("n", "<leader>hd", gs.diffthis, { desc = "Diff" })
+		map("n", "<leader>hD", function()
+			gs.diffthis("~")
+		end, { desc = "Diff this" })
+		map("n", "<leader>td", gs.toggle_deleted, { desc = "Toggle Deleted" })
+	end,
 }

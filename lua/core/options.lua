@@ -1,83 +1,62 @@
+vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
+
 local opt = vim.opt
-local o = vim.o
-local g = vim.g
 
--------------------------------------- options ------------------------------------------
-o.laststatus = 3
-o.showmode = false
+opt.autowrite = true -- Enable auto write
 
-o.clipboard = "unnamedplus"
-o.cursorline = true
-o.cursorlineopt = "number"
+if not vim.env.SSH_TTY then
+  opt.clipboard = "unnamedplus"
+end
 
--- Indenting
-o.expandtab = true
-o.shiftwidth = 2
-o.smartindent = true
-o.tabstop = 2
-o.softtabstop = 2
+opt.completeopt = "menu,menuone,noselect"
+opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+opt.confirm = true -- Confirm to save changes before exiting modified buffer
+opt.cursorline = true -- Enable highlighting of the current line
+opt.expandtab = true -- Use spaces instead of tabs
+opt.formatoptions = "jcroqlnt" -- tcqj
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
+opt.ignorecase = true -- Ignore case
+opt.inccommand = "nosplit" -- preview incremental substitute
+opt.laststatus = 3 -- global statusline
+opt.list = true -- Show some invisible characters (tabs...
+opt.mouse = "a" -- Enable mouse mode
+opt.number = true -- Print line number
+opt.pumblend = 10 -- Popup blend
+opt.pumheight = 10 -- Maximum number of entries in a popup
+opt.relativenumber = true -- Relative line numbers
+opt.scrolloff = 4 -- Lines of context
+opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize", "help", "globals", "skiprtp", "folds" }
+opt.shiftround = true -- Round indent
+opt.shiftwidth = 2 -- Size of an indent
+opt.shortmess:append({ W = true, I = true, c = true, C = true })
+opt.showmode = false -- Dont show mode since we have a statusline
+opt.sidescrolloff = 8 -- Columns of context
+opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+opt.smartcase = true -- Don't ignore case with capitals
+opt.smartindent = true -- Insert indents automatically
+opt.spelllang = { "en" }
+opt.splitbelow = true -- Put new windows below current
+opt.splitkeep = "screen"
+opt.splitright = true -- Put new windows right of current
+opt.tabstop = 2 -- Number of spaces tabs count for
+opt.termguicolors = true -- True color support
+if not vim.g.vscode then
+  opt.timeoutlen = 300 -- Lower than default (1000) to quickly trigger which-key
+end
+opt.undofile = true
+opt.undolevels = 10000
+opt.updatetime = 200 -- Save swap file and trigger CursorHold
+opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+opt.wildmode = "longest:full,full" -- Command-line completion mode
+opt.winminwidth = 5 -- Minimum window width
+opt.wrap = false -- Disable line wrap
+opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
 
-opt.fillchars = { eob = " " }
-o.ignorecase = true
-o.smartcase = true
-o.mouse = "a"
-
--- Numbers
-o.number = true
-o.numberwidth = 2
-o.ruler = false
-
--- disable nvim intro
-opt.shortmess:append "sI"
-
-o.signcolumn = "yes"
-o.splitbelow = true
-o.splitright = true
-o.timeoutlen = 400
-o.undofile = true
-
--- interval for writing swap file to disk, also used by gitsigns
-o.updatetime = 250
-
--- go to previous/next line with h,l,left arrow and right arrow
--- when cursor reaches end/beginning of line
-opt.whichwrap:append "<>[]hl"
-
-g.mapleader = " "
-
--- disable some default providers
-vim.g["loaded_node_provider"] = 0
-vim.g["loaded_python3_provider"] = 0
-vim.g["loaded_perl_provider"] = 0
-vim.g["loaded_ruby_provider"] = 0
-
--- add binaries installed by mason.nvim to path
-local is_windows = vim.fn.has("win32") ~= 0
-vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
-
-vim.scriptencoding = "utf-8"
-opt.encoding = "utf-8"
-opt.fileencoding = "utf-8"
-
-opt.rnu = true
-
-opt.incsearch = true
-opt.hlsearch = true
-
-opt.title = true
-opt.autoindent = true
-opt.hlsearch = true
-opt.backup = false
-opt.showcmd = true
-opt.cmdheight = 1
-opt.scrolloff = 10
-opt.shell = "zsh"
-opt.backupskip = { "/tmp/*", "/private/tmp/*" }
-opt.inccommand = "split"
-opt.smarttab = true
-opt.breakindent = true
-opt.wrap = false -- No Wrap lines
-opt.backspace = { "start", "eol", "indent" }
-opt.path:append({ "**" }) -- Finding files - Search down into subfolders
-opt.wildignore:append({ "*/node_modules/*" })
-opt.splitkeep = "cursor"

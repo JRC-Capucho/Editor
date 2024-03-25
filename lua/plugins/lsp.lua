@@ -1,30 +1,31 @@
 return {
 	"neovim/nvim-lspconfig",
-	dependencies = { "lukas-reineke/lsp-format.nvim" },
-	opts = {
-		-- options for vim.diagnostic.config()
-		diagnostics = {
-			underline = true,
-			update_in_insert = false,
-			virtual_text = {
-				spacing = 4,
-				source = "if_many",
-				prefix = "●",
-			},
-			severity_sort = true,
-			signs = {
-				text = {
-					[vim.diagnostic.severity.ERROR] = " ",
-					[vim.diagnostic.severity.WARN] = " ",
-					[vim.diagnostic.severity.HINT] = " ",
-					[vim.diagnostic.severity.INFO] = " ",
+	config = function()
+		local opts = {
+			diagnostics = {
+				underline = true,
+				update_in_insert = true,
+				virtual_text = {
+					spacing = 2,
+					source = "if_many",
+					prefix = "●",
+				},
+				severity_sort = true,
+				signs = {
+					text = {
+						[vim.diagnostic.severity.ERROR] = " ",
+						[vim.diagnostic.severity.WARN] = " ",
+						[vim.diagnostic.severity.HINT] = " ",
+						[vim.diagnostic.severity.INFO] = " ",
+					},
 				},
 			},
-		},
-		inlay_hints = { enabled = false },
-		codelens = { enabled = false },
-	},
-	config = function()
+			inlay_hints = { enabled = false },
+			codelens = { enabled = false },
+		}
+
+    vim.diagnostic.config(opts)
+
 		local lspconfig = require("lspconfig")
 
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
