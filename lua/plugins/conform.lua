@@ -12,7 +12,7 @@ return {
 				typescript = { { "eslint", "prettier" } },
 			},
 			format_on_save = {
-				timeout_ms = 500,
+				timeout_ms = 5000,
 				lsp_fallback = true,
 			},
 		})

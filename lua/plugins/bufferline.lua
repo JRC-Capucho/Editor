@@ -21,7 +21,7 @@ return {
 			show_tab_indicators = true,
 		},
 	},
-	config = function()
+	options = function()
 		local highlights = require("rose-pine.plugins.bufferline")
 		local buff = require("bufferline")
 		buff.setup({ { highlights = highlights } })

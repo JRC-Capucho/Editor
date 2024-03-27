@@ -13,6 +13,12 @@ return {
 			"eslint-lsp",
 			"stylua",
 			"shfmt",
+			"bash-language-server",
+			"json-lsp",
+			"yaml-language-server",
+			"sqlls",
+			"html-lsp",
+			"css-lsp",
 		},
 		ui = {
 			icons = {
