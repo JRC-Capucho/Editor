@@ -66,10 +66,12 @@ map("n", "<leader>sgc", "<cmd>Telescope git_commits<CR>", { desc = "telescope gi
 map("n", "<leader>sgs", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
 map(
   "n",
-  ";f",
+  "<leader>ff",
   "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
   { desc = "telescope find all files" }
 )
+
+map("n", ";f", "<cmd>Telescope find_files<CR>", { desc = "telescope find files" })
 
 -- Format
 map("n", "<leader>f", function()
@@ -78,4 +80,3 @@ end, { desc = "format files" })
 
 -- nvimtree
 map("n", "<leader>/", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
-
