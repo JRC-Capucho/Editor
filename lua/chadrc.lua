@@ -4,8 +4,10 @@
 ---@type ChadrcConfig
 local M = {}
 
+
 M.ui = {
-  theme = "poimandres",
+  theme = "catppuccin",
+    transparency = true,
   statusline = {
     theme = "minimal",
     separator_style = "block",

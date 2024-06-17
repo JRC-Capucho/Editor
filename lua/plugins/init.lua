@@ -195,7 +195,13 @@ return {
       },
       dependencies = {
         "MunifTanjim/nui.nvim",
-        { "rcarriga/nvim-notify", opts = { render = "minimal" } },
+        {
+          "rcarriga/nvim-notify",
+          opts = {
+            render = "minimal",
+            background_colour = "#000000",
+          },
+        },
       },
     },
   },
@@ -204,7 +210,7 @@ return {
     "nvimdev/dashboard-nvim",
     event = "VimEnter",
     opts = function()
-     return require "configs.dashboard"
+      return require "configs.dashboard"
     end,
     config = function(_, opts)
       require("dashboard").setup(opts)
@@ -220,6 +226,8 @@ return {
     event = { "VeryLazy" },
     config = true,
   },
+  --
+  { "wakatime/vim-wakatime", lazy = false },
   --
   {
     "mfussenegger/nvim-lint",
