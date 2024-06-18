@@ -154,6 +154,7 @@ return {
     --
     {
         "nvim-neotest/neotest",
+        ft = { "go", "ts", "php" },
         dependencies = {
             "nvim-neotest/nvim-nio",
             "nvim-neotest/neotest-go",
