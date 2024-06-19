@@ -44,23 +44,21 @@ map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rr
 map("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
 -- telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
-map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
-map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
-map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
-map("n", "<leader>fo", "<cmd>Telescope oldfiles<CR>", { desc = "telescope find oldfiles" })
-map("n", "<leader>fz", "<cmd>Telescope current_buffer_fuzzy_find<CR>", { desc = "telescope find in current buffer" })
-map("n", "<leader>cm", "<cmd>Telescope git_commits<CR>", { desc = "telescope git commits" })
-map("n", "<leader>gt", "<cmd>Telescope git_status<CR>", { desc = "telescope git status" })
-map("n", "<leader>pt", "<cmd>Telescope terms<CR>", { desc = "telescope pick hidden term" })
-map("n", "<leader>th", "<cmd>Telescope themes<CR>", { desc = "telescope nvchad themes" })
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
-map(
-    "n",
-    "<leader>fa",
-    "<cmd>Telescope find_files follow=true no_ignore=true hidden=true<CR>",
-    { desc = "telescope find all files" }
-)
+map("n", "<leader>ps", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
+map("n", "<leader>vh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
+
+map("n", "<leader>pWs", function()
+    local word = vim.fn.expand "<cWORD>"
+    require("telescope.builtin").grep_string { search = word }
+end, { desc = "telescope nvchad themes" })
+
+map("n", "<leader>pws", function()
+    local word = vim.fn.expand "<cword>"
+    require("telescope.builtin").grep_string { search = word }
+end, { desc = "telescope nvchad themes" })
+
+map("n", "<leader>pf", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
+map("n", "<leader>pt", "<cmd>Telescope treesitter<cr>", { desc = "telescope find files" })
 
 -- Format
 map("n", "<leader>f", function()
