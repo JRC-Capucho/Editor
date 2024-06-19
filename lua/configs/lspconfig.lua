@@ -7,11 +7,10 @@ local lspconfig = require "lspconfig"
 local servers = {
   "tsserver",
   "gopls",
-  "phpactor",
   "prismals",
-  "pyright",
+  "intelephense",
   "dockerls",
---  "terraformls",
+  "terraformls",
   "docker_compose_language_service",
 }
 

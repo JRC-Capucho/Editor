@@ -52,7 +52,7 @@ return {
                 -- Terraform
                 "terraform-ls",
                 -- PHP
-                "phpactor",
+                "intelephens",
                 "pint",
                 "phpstan",
             },
@@ -79,7 +79,7 @@ return {
                 --yaml
                 "yaml",
                 -- terraform
-                --"terraorm",
+                "terraform",
                 --docker
                 "dockerfile",
                 -- low level
