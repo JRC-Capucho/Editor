@@ -21,9 +21,6 @@ null_ls.setup {
         formatting.stylua.with {
             filetypes = { "lua" },
         },
-        formatting.pint.with {
-            filetypes = { "php" },
-        },
         formatting.prettier.with {
             filetypes = { "js", "ts" },
         },
@@ -36,8 +33,11 @@ null_ls.setup {
         formatting.golines.with {
             filetypes = { "go" },
         },
-        diagnostics.phpstan.with {
-            filetypes = { "php" },
+        formatting.black.with {
+            filetypes = { "py" },
+        },
+        formatting.isort.with {
+            filetypes = { "py" },
         },
         code_actions.gitsigns,
         require "none-ls.diagnostics.eslint", -- requires none-ls-extras.nvim

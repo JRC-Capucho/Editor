@@ -51,10 +51,6 @@ return {
                 "typescript-language-server",
                 -- Terraform
                 "terraform-ls",
-                -- PHP
-                "intelephens",
-                "pint",
-                "phpstan",
             },
         },
     },
@@ -154,7 +150,7 @@ return {
     --
     {
         "nvim-neotest/neotest",
-        ft = { "go", "ts", "php" },
+        ft = { "go", "typescript", "javascript", "php", "python" },
         dependencies = {
             "nvim-neotest/nvim-nio",
             "nvim-neotest/neotest-go",
@@ -204,21 +200,6 @@ return {
     },
     --
     {
-        "adalessa/laravel.nvim",
-        dependencies = {
-            "tpope/vim-dotenv",
-        },
-        cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
-        keys = {
-            { "<leader>la", ":Laravel artisan<cr>" },
-            { "<leader>lr", ":Laravel routes<cr>" },
-            { "<leader>lm", ":Laravel related<cr>" },
-        },
-        event = { "VeryLazy" },
-        config = true,
-    },
-    --
-    {
         "hrsh7th/nvim-cmp",
         opts = function()
             return require "configs.cmp"
@@ -235,6 +216,10 @@ return {
     --
     {
         "lukas-reineke/indent-blankline.nvim",
+        enabled = false,
+    },
+    {
+        "stevearc/conform.nvim",
         enabled = false,
     },
 }
