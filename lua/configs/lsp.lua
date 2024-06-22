@@ -7,7 +7,16 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 end)
 
-require('mason').setup({})
+require('mason').setup({
+    ui = {
+        icons = {
+            package_installed = "",
+            package_pending = "➜",
+            package_uninstalled = "",
+        }
+    }
+})
+
 
 require('mason-lspconfig').setup({
     ensure_installed = {
