@@ -1,5 +1,3 @@
-require "nvchad.options"
-
 vim.opt.guicursor = ""
 
 vim.opt.nu = true

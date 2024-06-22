@@ -1,4 +1,4 @@
-return {
+local plugin = {
     {
         "nvimtools/none-ls.nvim",
         event = "User FilePost",
@@ -54,39 +54,6 @@ return {
             },
         },
     },
-    --
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = {
-            ensure_installed = {
-                -- defaults
-                "vim",
-                "lua",
-                "vimdoc",
-
-                -- web dev
-                "html",
-                "css",
-                "javascript",
-                "typescript",
-                "tsx",
-                "php",
-
-                --yaml
-                "yaml",
-                -- terraform
-                "terraform",
-                --docker
-                "dockerfile",
-                -- low level
-                "c",
-                "zig",
-                "go",
-                "regex",
-            },
-        },
-    },
-    --
     {
         "Pocco81/TrueZen.nvim",
         lazy = false,
@@ -135,7 +102,7 @@ return {
         "NeogitOrg/neogit",
         dependencies = {
             "sindrets/diffview.nvim", -- optional - Diff integration
-            "ibhagwan/fzf-lua", -- optional
+            "ibhagwan/fzf-lua",       -- optional
         },
         keys = {
             {
@@ -148,24 +115,6 @@ return {
         config = true,
     },
     --
-    {
-        "nvim-neotest/neotest",
-        ft = { "go", "typescript", "javascript", "php", "python" },
-        dependencies = {
-            "nvim-neotest/nvim-nio",
-            "nvim-neotest/neotest-go",
-            "nvim-neotest/neotest-jest",
-            "nvim-neotest/neotest-python",
-            "V13Axel/neotest-pest",
-            "marilari88/neotest-vitest",
-            "nvim-lua/plenary.nvim",
-            "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        config = function()
-            require "configs.notest"
-        end,
-    },
     --
     {
         {
@@ -222,4 +171,114 @@ return {
         "stevearc/conform.nvim",
         enabled = false,
     },
+}
+
+
+return {
+    { 'nvim-lua/plenary.nvim' },
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        opts = {
+            ensure_installed = {
+                -- defaults
+                "vim",
+                "lua",
+                "vimdoc",
+                "jsdoc",
+
+                -- web dev
+                "html",
+                "css",
+                "javascript",
+                "typescript",
+                "tsx",
+                "php",
+
+                --yaml
+                "yaml",
+                -- terraform
+                "terraform",
+                --docker
+                "dockerfile",
+                -- low level
+                "c",
+                "zig",
+                "go",
+                "regex",
+                "bash",
+            },
+            sync_install = false,
+            auto_install = true,
+            indent = {
+                enable = true
+            },
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = { "markdown" },
+            },
+        },
+        config = function(_, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end
+    },
+    {
+        'nvim-telescope/telescope.nvim',
+        config = true,
+        init = function()
+            require 'configs.telescope'
+        end
+    },
+    {
+        "rose-pine/neovim",
+        name = "rose-pine",
+        opts = {
+            variant = "moon",
+            styles = {
+                transparency = true,
+            },
+        },
+        config = function(_, opts)
+            require('rose-pine').setup(opts)
+            vim.cmd.colorscheme('rose-pine-moon')
+        end
+    },
+    {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        dependencies = {
+            { 'williamboman/mason.nvim',          config = true },
+            { 'williamboman/mason-lspconfig.nvim' },
+            { 'neovim/nvim-lspconfig' },
+            { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/nvim-cmp' },
+            { 'L3MON4D3/LuaSnip' },
+        },
+        config = function()
+            require "configs.lsp"
+        end
+    },
+    {
+        "nvim-neotest/neotest",
+        dependencies = {
+            "nvim-neotest/nvim-nio",
+            "nvim-neotest/neotest-go",
+            "nvim-neotest/neotest-jest",
+            "nvim-neotest/neotest-python",
+            "V13Axel/neotest-pest",
+            "marilari88/neotest-vitest",
+            "nvim-lua/plenary.nvim",
+            "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        config = function()
+            require "configs.neotest"
+        end,
+    },
+    {
+        "tpope/vim-fugitive",
+        config = function()
+            require 'configs.fugitive'
+        end
+    }
 }
