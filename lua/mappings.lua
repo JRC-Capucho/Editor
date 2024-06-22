@@ -38,4 +38,3 @@ map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 map("n", "<leader>f", function()
     vim.lsp.buf.format { timeout_ms = 2000 }
 end, { desc = "format files" })
-

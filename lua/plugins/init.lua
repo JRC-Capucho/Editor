@@ -34,7 +34,6 @@ local plugin = {
                 "gofumpt",
                 "goimports",
                 "golines",
-                "gopls",
                 -- Docker
                 "docker-compose-language-service",
                 "dockerfile-language-server",
@@ -42,10 +41,11 @@ local plugin = {
                 -- Python
                 "black",
                 "isort",
-                "pyright",
                 -- TS
                 "prettier",
                 "eslint-lsp",
+                "pyright",
+                "gopls",
                 "prisma-language-server",
                 "tailwindcss-language-server",
                 "typescript-language-server",
@@ -253,6 +253,7 @@ return {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/nvim-cmp' },
             { 'L3MON4D3/LuaSnip' },
+            { "onsails/lspkind.nvim" },
         },
         config = function()
             require "configs.lsp"

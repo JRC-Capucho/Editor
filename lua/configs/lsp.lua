@@ -1,24 +1,54 @@
 local lsp_zero = require('lsp-zero')
 
-lsp_zero.on_attach(function(client, bufnr)
-    local opts = {buffer = bufnr}
-  -- see :help lsp-zero-keybindings
-  -- to learn the available actions
-  lsp_zero.default_keymaps(opts)
-  vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-  vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+lsp_zero.on_attach(function(_, bufnr)
+    local opts = { buffer = bufnr }
+    lsp_zero.default_keymaps(opts)
+    vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 end)
 
--- to learn how to use mason.nvim
--- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guide/integrate-with-mason-nvim.md
 require('mason').setup({})
+
 require('mason-lspconfig').setup({
-  ensure_installed = {
-"lua_ls",
-  },
-  handlers = {
-    function(server_name)
-      require('lspconfig')[server_name].setup({})
-    end,
-  },
+    ensure_installed = {
+        "lua_ls",
+        "tsserver",
+        "eslint",
+        "terraformls",
+        "docker_compose_language_service",
+        "dockerls",
+        "gopls",
+        "pyright",
+        "intelephense",
+        "tailwindcss",
+        "prismals",
+        "bashls",
+        "cssls",
+        "html",
+        "jsonls",
+
+    },
+    handlers = {
+        function(server_name)
+            require('lspconfig')[server_name].setup({})
+        end,
+    },
+})
+
+local cmp = require "cmp"
+
+cmp.setup({
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        format = require('lspkind').cmp_format({
+            mode = 'symbol',       -- show only symbol annotations
+            maxwidth = 50,         -- prevent the popup from showing more than provided characters
+            ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
+            show_labelDetails = true,
+        })
+    },
 })
