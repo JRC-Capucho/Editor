@@ -7,6 +7,7 @@ lsp_zero.on_attach(function(_, bufnr)
   vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
 end)
 
+
 require('mason').setup({
   ui = {
     icons = {
