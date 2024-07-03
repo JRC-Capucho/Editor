@@ -10,6 +10,9 @@ return {
         "lua",
         "vimdoc",
         "jsdoc",
+        "gitcommit",
+        "markdown",
+        "markdown_inline",
 
         -- web dev
         "html",

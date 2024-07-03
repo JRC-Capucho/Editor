@@ -23,6 +23,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     "lua_ls",
     "tsserver",
+    "vtsls",
     "eslint",
     "terraformls",
     "docker_compose_language_service",
@@ -36,7 +37,7 @@ require('mason-lspconfig').setup({
     "cssls",
     "html",
     "jsonls",
-
+    "ruby_lsp"
   },
   handlers = {
     function(server_name)
