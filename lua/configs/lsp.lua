@@ -37,7 +37,8 @@ require('mason-lspconfig').setup({
     "cssls",
     "html",
     "jsonls",
-    "ruby_lsp"
+    "ruby_lsp",
+    "rubocop",
   },
   handlers = {
     function(server_name)

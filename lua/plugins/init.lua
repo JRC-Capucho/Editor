@@ -34,6 +34,7 @@ return {
         "go",
         "regex",
         "bash",
+        "ruby",
       },
       sync_install = false,
       auto_install = true,
