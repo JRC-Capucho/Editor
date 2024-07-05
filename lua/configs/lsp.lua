@@ -4,10 +4,10 @@ lsp_zero.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr }
   lsp_zero.default_keymaps(opts)
   lsp_zero.buffer_autoformat()
-  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
-  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
-  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, opts)
+  vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
+  vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts)
+  vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts)
 end)
 
 lsp_zero.set_sign_icons({
@@ -38,6 +38,7 @@ require('mason-lspconfig').setup({
     "dockerls",
     "gopls",
     "pyright",
+    "phpactor",
     "intelephense",
     "tailwindcss",
     "prismals",
