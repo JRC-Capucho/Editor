@@ -3,10 +3,19 @@ local lsp_zero = require('lsp-zero')
 lsp_zero.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr }
   lsp_zero.default_keymaps(opts)
-  vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-  vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+  lsp_zero.buffer_autoformat()
+  vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
+  vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
+  vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+  vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 end)
 
+lsp_zero.set_sign_icons({
+  error = '✘',
+  warn = '▲',
+  hint = '⚑',
+  info = '»'
+})
 
 require('mason').setup({
   ui = {
@@ -17,7 +26,6 @@ require('mason').setup({
     }
   }
 })
-
 
 require('mason-lspconfig').setup({
   ensure_installed = {
@@ -44,12 +52,21 @@ require('mason-lspconfig').setup({
     function(server_name)
       require('lspconfig')[server_name].setup({})
     end,
-  },
+  }
 })
 
 local cmp = require "cmp"
+local cmp_action = require('lsp-zero').cmp_action()
+
+
+require('luasnip.loaders.from_snipmate').lazy_load()
 
 cmp.setup({
+  sources = {
+    { name = 'nvim_lsp' },
+    { name = 'luasnip' },
+    { name = 'buffer' },
+  },
   window = {
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
@@ -66,5 +83,12 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    ['<C-s>;'] = cmp_action.luasnip_supertab(),
+    ['<C-s>,'] = cmp_action.luasnip_shift_supertab(),
   }),
+  snippet = {
+    expand = function(args)
+      require('luasnip').lsp_expand(args.body)
+    end
+  }
 })
