@@ -31,7 +31,6 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     "lua_ls",
     "tsserver",
-    "vtsls",
     "eslint",
     "terraformls",
     "docker_compose_language_service",
@@ -39,7 +38,6 @@ require('mason-lspconfig').setup({
     "gopls",
     "pyright",
     "phpactor",
-    "intelephense",
     "tailwindcss",
     "prismals",
     "bashls",
@@ -49,6 +47,7 @@ require('mason-lspconfig').setup({
     "ruby_lsp",
     "rubocop",
   },
+
   handlers = {
     function(server_name)
       require('lspconfig')[server_name].setup({})
@@ -60,7 +59,7 @@ local cmp = require "cmp"
 local cmp_action = require('lsp-zero').cmp_action()
 
 
-require('luasnip.loaders.from_snipmate').lazy_load()
+require('luasnip.loaders.from_vscode').lazy_load()
 
 cmp.setup({
   sources = {
@@ -72,15 +71,24 @@ cmp.setup({
     completion = cmp.config.window.bordered(),
     documentation = cmp.config.window.bordered(),
   },
+
   formatting = {
-    fields = { 'abbr', 'kind', 'menu' },
-    format = require('lspkind').cmp_format({
-      mode = 'symbol',       -- show only symbol annotations
-      maxwidth = 50,         -- prevent the popup from showing more than provided characters
-      ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
-      show_labelDetails = true,
-    })
+    fields = { 'menu', 'abbr', 'kind' },
+
+    format = function(entry, item)
+      local menu_icon = {
+        nvim_lsp = 'λ',
+        luasnip = '⋗',
+        buffer = 'Ω',
+        path = '🖫',
+        nvim_lua = 'Π',
+      }
+
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
   },
+
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),

@@ -115,5 +115,13 @@ return {
     config = function()
       require 'configs.codium'
     end
+  },
+  {
+    "jay-babu/mason-null-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = "nvimtools/none-ls.nvim",
+    config = function()
+      require 'configs.null'
+    end,
   }
 }
