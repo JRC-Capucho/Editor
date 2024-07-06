@@ -35,7 +35,13 @@ return {
         "regex",
         "bash",
         "ruby",
-        "python"
+        "python",
+        -- git,
+        "git_config",
+        "gitcommit",
+        "git_rebase",
+        "gitignore",
+        "gitattributes",
       },
       sync_install = false,
       auto_install = true,
@@ -82,7 +88,7 @@ return {
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/nvim-cmp' },
       { 'L3MON4D3/LuaSnip' },
-      { "onsails/lspkind.nvim" },
+      { "petertriho/cmp-git" },
     },
     config = function()
       require "configs.lsp"
@@ -95,11 +101,10 @@ return {
       "nvim-neotest/neotest-go",
       "nvim-neotest/neotest-jest",
       "nvim-neotest/neotest-python",
+      "olimorris/neotest-rspec",
       "V13Axel/neotest-pest",
       "marilari88/neotest-vitest",
-      "nvim-lua/plenary.nvim",
       "antoinemadec/FixCursorHold.nvim",
-      "nvim-treesitter/nvim-treesitter",
     },
     config = function()
       require "configs.neotest"

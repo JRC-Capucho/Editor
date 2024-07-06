@@ -1,16 +1,17 @@
 require("neotest").setup {
-    adapters = {
-        require "neotest-python" {
-            dap = { justMyCode = false },
-        },
-        require "neotest-vitest",
-        require "neotest-python",
-        require "neotest-pest",
-        require "neotest-go",
-        require "neotest-jest",
+  adapters = {
+    require "neotest-python" {
+      dap = { justMyCode = false },
     },
+    require "neotest-vitest",
+    require "neotest-python",
+    require "neotest-pest",
+    require "neotest-go",
+    require "neotest-jest",
+    require "neotest-rspec",
+  },
 }
 
 vim.keymap.set("n", "<leader>ts", function()
-    require("neotest").summary.toggle()
+  require("neotest").summary.toggle()
 end)

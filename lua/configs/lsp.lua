@@ -33,6 +33,7 @@ require('mason-lspconfig').setup({
     "tsserver",
     "eslint",
     "terraformls",
+    "yamlls",
     "docker_compose_language_service",
     "dockerls",
     "gopls",
@@ -44,8 +45,7 @@ require('mason-lspconfig').setup({
     "cssls",
     "html",
     "jsonls",
-    "ruby_lsp",
-    "rubocop",
+    "solargraph",
   },
 
   handlers = {
@@ -54,6 +54,23 @@ require('mason-lspconfig').setup({
     end,
   }
 })
+
+
+
+require('lspconfig').yamlls.setup {
+  settings = {
+    yaml = {
+      schemas = {
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+        ["../path/relative/to/file.yml"] = "/.github/workflows/*",
+        ["/path/from/root/of/project"] = "/.github/workflows/*",
+        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
+      },
+    },
+  }
+}
+
+
 
 local cmp = require "cmp"
 local cmp_action = require('lsp-zero').cmp_action()
@@ -65,6 +82,7 @@ cmp.setup({
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'git' },
     { name = 'buffer' },
   },
   window = {
