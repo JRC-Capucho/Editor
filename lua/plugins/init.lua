@@ -35,6 +35,7 @@ return {
         "regex",
         "bash",
         "ruby",
+        "python"
       },
       sync_install = false,
       auto_install = true,
