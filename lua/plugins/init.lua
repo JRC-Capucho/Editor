@@ -75,7 +75,19 @@ return {
     },
     config = function(_, opts)
       require('rose-pine').setup(opts)
-      vim.cmd.colorscheme('rose-pine-moon')
+      -- vim.cmd.colorscheme('rose-pine-moon')
+    end
+  },
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      transparent = true,
+    },
+    config = function(_, opts)
+      require("tokyonight").setup(opts)
+      vim.cmd.colorscheme('tokyonight')
     end
   },
   {
