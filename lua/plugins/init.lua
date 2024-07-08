@@ -75,19 +75,7 @@ return {
     },
     config = function(_, opts)
       require('rose-pine').setup(opts)
-      -- vim.cmd.colorscheme('rose-pine-moon')
-    end
-  },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      transparent = true,
-    },
-    config = function(_, opts)
-      require("tokyonight").setup(opts)
-      vim.cmd.colorscheme('tokyonight')
+      vim.cmd.colorscheme('rose-pine-moon')
     end
   },
   {
@@ -99,8 +87,8 @@ return {
       { 'neovim/nvim-lspconfig' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/nvim-cmp' },
-      { 'L3MON4D3/LuaSnip' },
-      { "petertriho/cmp-git" },
+      { "j-hui/fidget.nvim",                opts = {} },
+      { 'L3MON4D3/LuaSnip',                 build = "make install_jsregexp" },
     },
     config = function()
       require "configs.lsp"
@@ -141,5 +129,13 @@ return {
     config = function()
       require 'configs.null'
     end,
+  },
+  {
+    "folke/trouble.nvim",
+    opts = {},
+    config = function()
+      require "configs.trouble"
+    end
+
   }
 }

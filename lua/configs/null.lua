@@ -18,7 +18,7 @@ local null_ls = require("null-ls")
 null_ls.setup({
   sources = {
     -- LUA
-    null_ls.builtins.diagnostics.selene,
+    --    null_ls.builtins.diagnostics.selene,
     -- PHP
     null_ls.builtins.formatting.pint,
     -- GO
@@ -28,6 +28,6 @@ null_ls.setup({
     null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.isort,
     -- DOCKER
-    null_ls.builtins.diagnostics.hadolint,
+    -- null_ls.builtins.diagnostics.hadolint,
   },
 })
