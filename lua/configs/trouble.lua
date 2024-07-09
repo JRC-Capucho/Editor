@@ -1,5 +1,5 @@
 vim.keymap.set("n", "<leader>tt", function()
-  require("trouble").open('diagnostics')
+  require("trouble").open({ mode = "quickfix" })
 end)
 
 vim.keymap.set("n", "[t", function()

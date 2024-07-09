@@ -2,32 +2,47 @@ require("mason").setup()
 require("mason-null-ls").setup({
   ensure_installed = {
     "selene",
-    "pint",
+    --PHP
+    "phpcs",
+    "php-cs-fixer",
+    --GO
     "goimports",
     "gofmt",
+    --PY
     "black",
     "isort",
-    "hadolint"
+    --DOCKER
+    "hadolint",
+    --TERRAFORM
+    'tflint',
+    "sqlfluff",
   },
   automatic_installation = false,
   handlers = {},
 })
 
-local null_ls = require("null-ls")
+local nls = require("null-ls")
 
-null_ls.setup({
+nls.setup({
   sources = {
     -- LUA
-    --    null_ls.builtins.diagnostics.selene,
+    nls.builtins.diagnostics.selene,
     -- PHP
-    null_ls.builtins.formatting.pint,
+    nls.builtins.formatting.pint,
     -- GO
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.gofmt,
+    nls.builtins.formatting.goimports,
+    nls.builtins.formatting.gofmt,
     -- PYTHON
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
+    nls.builtins.formatting.black,
+    nls.builtins.formatting.isort,
     -- DOCKER
-    -- null_ls.builtins.diagnostics.hadolint,
+    nls.builtins.diagnostics.hadolint,
+    -- PHP
+    nls.builtins.formatting.phpcsfixer,
+    nls.builtins.diagnostics.phpcs,
+    --TERRAFORM
+    nls.builtins.formatting.terraform_fmt,
+    nls.builtins.diagnostics.terraform_validate,
+    nls.builtins.diagnostics.sqlfluff,
   },
 })

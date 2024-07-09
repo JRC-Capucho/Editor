@@ -5,43 +5,37 @@ return {
     build = ":TSUpdate",
     opts = {
       ensure_installed = {
-        -- defaults
         "vim",
+        "sql",
         "lua",
         "vimdoc",
         "jsdoc",
         "gitcommit",
         "markdown",
         "markdown_inline",
-
-        -- web dev
         "html",
         "css",
         "javascript",
         "typescript",
         "tsx",
         "php",
-
-        --yaml
         "yaml",
-        -- terraform
         "terraform",
-        --docker
+        "hcl",
         "dockerfile",
-        -- low level
         "c",
         "zig",
         "go",
+        "gomod",
+        "gowork",
+        "gosum",
         "regex",
         "bash",
         "ruby",
         "python",
-        -- git,
-        "git_config",
-        "gitcommit",
-        "git_rebase",
-        "gitignore",
-        "gitattributes",
+        "ninja",
+        "rst",
+        "prisma",
       },
       sync_install = false,
       auto_install = true,
@@ -75,23 +69,25 @@ return {
     },
     config = function(_, opts)
       require('rose-pine').setup(opts)
-      vim.cmd.colorscheme('rose-pine-moon')
+      vim.cmd.colorscheme('rose-pine')
     end
   },
   {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
     dependencies = {
-      { 'williamboman/mason.nvim',          config = true },
+      { 'williamboman/mason.nvim',             config = true },
       { 'williamboman/mason-lspconfig.nvim' },
       { 'neovim/nvim-lspconfig' },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'hrsh7th/nvim-cmp' },
-      { "j-hui/fidget.nvim",                opts = {} },
-      { 'L3MON4D3/LuaSnip',                 build = "make install_jsregexp" },
+      { "j-hui/fidget.nvim",                   opts = {} },
+      { 'L3MON4D3/LuaSnip',                    build = "make install_jsregexp" },
+      { "kristijanhusak/vim-dadbod-completion" },
     },
     config = function()
       require "configs.lsp"
+      require "configs.cmp"
     end
   },
   {
@@ -117,12 +113,6 @@ return {
     end
   },
   {
-    'Exafunction/codeium.vim',
-    config = function()
-      require 'configs.codium'
-    end
-  },
-  {
     "jay-babu/mason-null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = "nvimtools/none-ls.nvim",
@@ -136,6 +126,19 @@ return {
     config = function()
       require "configs.trouble"
     end
+  },
 
+  {
+    "kristijanhusak/vim-dadbod-ui",
+    cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
+    dependencies = { "tpope/vim-dadbod", cmd = "DB" },
+    keys = {
+      { "<leader>D", "<cmd>DBUIToggle<CR>", desc = "Toggle DBUI" },
+    },
+    init = function()
+      vim.g.db_ui_show_database_icon = true
+      vim.g.db_ui_use_nerd_fonts = true
+      vim.g.db_ui_execute_on_save = false
+    end,
   }
 }
