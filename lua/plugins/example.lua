@@ -12,6 +12,13 @@ return {
   { "folke/persistence.nvim",              enabled = false },
 
   {
+    "folke/noice.nvim",
+    opts = function(_, opts)
+      opts.presets.lsp_doc_border = true
+    end,
+  },
+
+  {
     "folke/trouble.nvim",
     keys = {
       {
@@ -114,6 +121,11 @@ return {
     --@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require 'cmp'
+
+      opts.window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      }
 
       opts.mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
