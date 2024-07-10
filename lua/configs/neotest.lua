@@ -6,7 +6,7 @@ require("neotest").setup {
     require "neotest-vitest",
     require "neotest-python",
     require "neotest-pest",
-    require "neotest-go",
+    require "neotest-golang",
     require "neotest-jest",
     require "neotest-rspec",
   },

@@ -33,8 +33,3 @@ map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- Format
-map("n", "<leader>f", function()
-  vim.lsp.buf.format { timeout_ms = 2000 }
-end, { desc = "format files" })
