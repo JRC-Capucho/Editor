@@ -7,6 +7,7 @@ local map = vim.keymap.set
 
 local on_attach = function(_, bufnr)
   local opts = { buffer = bufnr }
+
   map("n", "gd", vim.lsp.buf.definition, opts)
   map("n", "K", vim.lsp.buf.hover, opts)
   map("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
@@ -32,12 +33,6 @@ for _, lsp in ipairs(servers) do
 end
 
 -- typescript
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  on_init = on_init,
-  capabilities = capabilities,
-}
-
 lspconfig.gopls.setup {
   on_init  = on_init,
   capabilities = capabilities,
@@ -90,9 +85,6 @@ lspconfig.eslint.setup {
 }
 
 lspconfig.vtsls.setup {
-  on_init  = on_init,
-  capabilities = capabilities,
-  on_attach = on_attach,
   ft = {
     "javascript",
     "javascriptreact",
