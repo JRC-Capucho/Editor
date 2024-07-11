@@ -1,8 +1,8 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
-keys = {
+    event = "BufWritePre", -- uncomment for format on save
+    keys = {
       {
         "<leader>f",
         function()
@@ -106,8 +106,8 @@ keys = {
     "hrsh7th/nvim-cmp",
     dependencies = "kristijanhusak/vim-dadbod-completion",
     opts = function()
-      local conf = require 'nvchad.configs.cmp'
-      local cmp = require 'cmp'
+      local conf = require "nvchad.configs.cmp"
+      local cmp = require "cmp"
 
       conf.source = { name = "vim-dadbod-completion" }
 
@@ -145,14 +145,17 @@ keys = {
       }
 
       return conf
-    end
+    end,
   },
   {
     "nvim-neotest/neotest",
     keys = {
-      { "<leader>,ts", function()
-        require("neotest").summary.toggle()
-      end }
+      {
+        "<leader>,ts",
+        function()
+          require("neotest").summary.toggle()
+        end,
+      },
     },
     dependencies = {
       "nvim-neotest/nvim-nio",
@@ -172,20 +175,24 @@ keys = {
     "folke/trouble.nvim",
     opts = {},
     keys = {
-      { "<leader>tt", function()
-        require 'trouble'.open({ mode = "diagnostics" })
-      end },
       {
-        "[t", function()
-        require 'trouble'.next({ skip_groups = true, jump = true })
-      end
-
+        "<leader>tt",
+        function()
+          require("trouble").open { mode = "diagnostics" }
+        end,
       },
       {
-        "]t", function()
-        require 'trouble'.prev({ skip_groups = true, jump = true })
-      end
-      }
+        "[t",
+        function()
+          require("trouble").next { skip_groups = true, jump = true }
+        end,
+      },
+      {
+        "]t",
+        function()
+          require("trouble").prev { skip_groups = true, jump = true }
+        end,
+      },
     },
   },
   {
@@ -211,5 +218,20 @@ keys = {
         tf = { "terraform_validate" },
       },
     },
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "sindrets/diffview.nvim", -- optional - Diff integration
+      "ibhagwan/fzf-lua", -- optional
+    },
+    keys = {
+      {
+        "<leader>gs", function ()
+          require 'neogit'.open()
+        end
+      },
+    },
+    config = true,
   },
 }
