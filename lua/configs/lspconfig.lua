@@ -21,7 +21,7 @@ local on_attach = function(_, bufnr)
 end
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "lua_ls" }
+local servers = { "html", "cssls", "gopls", "vtsls", "solargraph" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -32,128 +32,8 @@ for _, lsp in ipairs(servers) do
   }
 end
 
--- typescript
-lspconfig.gopls.setup {
-  on_init  = on_init,
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    gopls = {
-      gofumpt = true,
-      codelenses = {
-        gc_details = false,
-        generate = true,
-        regenerate_cgo = true,
-        run_govulncheck = true,
-        test = true,
-        tidy = true,
-        upgrade_dependency = true,
-        vendor = true,
-      },
-      hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        compositeLiteralTypes = true,
-        constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
-      },
-      analyses = {
-        fieldalignment = true,
-        nilness = true,
-        unusedparams = true,
-        unusedwrite = true,
-        useany = true,
-      },
-      usePlaceholders = true,
-      completeUnimported = true,
-      staticcheck = true,
-      directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-      semanticTokens = true,
-    },
-  },
-}
-
-lspconfig.eslint.setup {
-  on_init  = on_init,
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    workingDirectories = { mode = "auto" },
-  },
-}
-
-lspconfig.vtsls.setup {
-  ft = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
-  },
-  root = { "tsconfig.json", "package.json", "jsconfig.json" },
-  settings = {
-    complete_function_calls = true,
-    vtsls = {
-      enableMoveToFileCodeAction = true,
-      autoUseWorkspaceTsdk = true,
-      experimental = {
-        completion = {
-          enableServerSideFuzzyMatch = true,
-        },
-      },
-    },
-    typescript = {
-      updateImportsOnFileMove = { enabled = "always" },
-      suggest = {
-        completeFunctionCalls = true,
-      },
-      inlayHints = {
-        enumMemberValues = { enabled = true },
-        functionLikeReturnTypes = { enabled = true },
-        parameterNames = { enabled = "literals" },
-        parameterTypes = { enabled = true },
-        propertyDeclarationTypes = { enabled = true },
-        variableTypes = { enabled = false },
-      },
-    },
-  },
-}
-
-lspconfig.lua_ls.setup {
-  on_init  = on_init,
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    Lua = {
-      workspace = {
-        checkThirdParty = false,
-      },
-      codeLens = {
-        enable = true,
-      },
-      completion = {
-        callSnippet = "Replace",
-      },
-      doc = {
-        privateName = { "^_" },
-      },
-      hint = {
-        enable = true,
-        setType = false,
-        paramType = true,
-        paramName = "Disable",
-        semicolon = "Disable",
-        arrayIndex = "Disable",
-      },
-    },
-  },
-}
-
 lspconfig.yamlls.setup {
-  on_init  = on_init,
+  on_init = on_init,
   capabilities = capabilities,
   on_attach = on_attach,
   settings = {

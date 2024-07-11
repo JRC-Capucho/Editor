@@ -20,7 +20,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      -- require("nvchad.configs.lspconfig").defaults()
+      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
   },
@@ -227,11 +227,25 @@ return {
     },
     keys = {
       {
-        "<leader>gs", function ()
-          require 'neogit'.open()
-        end
+        "<leader>gs",
+        function()
+          require("neogit").open()
+        end,
       },
     },
     config = true,
+  },
+  {
+    "stevearc/oil.nvim",
+    lazy = false,
+    opts = {
+      view_options = {
+        show_hidden = true
+      }
+    },
+    keys = {
+      { "<leader>pv", ":Oil<cr>" },
+    },
+    dependencies = { "echasnovski/mini.icons" },
   },
 }
