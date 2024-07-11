@@ -1,6 +1,4 @@
--- Keymaps are automatically loaded on the VeryLazy event
--- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
--- Add any additional keymaps here
+-- require "nvchad.mappings"
 
 local map = vim.keymap.set
 vim.g.mapleader = " "
@@ -38,7 +36,21 @@ map("n", "<leader>j", "<cmd>lprev<CR>zz")
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- Format
-map("n", "<leader>f", function()
-  vim.lsp.buf.format({ timeout_ms = 2000 })
-end, { desc = "format files" })
+-- telescope
+map("n", "<leader>vh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
+map("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "telescope git commits" })
+map("n", "<leader>pf", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
+map("n", "<leader>ps", function()
+  return ":Telescope grep_string search=" .. vim.fn.input "Grep > " .. "<cr>"
+end
+, { desc = "telescope find files", expr = true })
+
+map("n", "<leader>pws", function()
+  return ":Telescope grep_string search=" .. vim.fn.expand "<cword>" .. "<cr>"
+end
+, { desc = "telescope find files", expr = true })
+
+map("n", "<leader>pWs", function()
+  return ":Telescope grep_string search=" .. vim.fn.expand "<cWORD>" .. "<cr>"
+end
+, { desc = "telescope find files", expr = true })

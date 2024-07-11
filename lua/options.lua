@@ -1,12 +1,9 @@
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
--- Add any additional options here
+require "nvchad.options"
 
-vim.g.lazyvim_php_lsp = "intelephense"
-vim.g.lazy = "intelephense"
+-- add yours here!
 
-vim.g.lazyvim_python_lsp = "pyright"
-vim.g.lazyvim_python_ruff = "ruff_lsp"
+ local o = vim.o
+o.cursorlineopt ='both'
 
 vim.g.mapleader = " "
 
@@ -25,7 +22,7 @@ vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
 vim.opt.expandtab = true
 vim.opt.scrolloff = 10
-vim.opt.shell = "fish"
+vim.opt.shell = "zsh"
 vim.opt.backupskip = { "/tmp/*", "/private/tmp/*" }
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true -- Case insensitive searching UNLESS /C or capital in search
