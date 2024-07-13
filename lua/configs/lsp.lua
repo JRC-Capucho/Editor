@@ -84,28 +84,26 @@ local mason_things = {
   "hadolint",
 }
 
-local lsps = {
-  "lua_ls",
-  "vtsls",
-  "eslint",
-  "terraformls",
-  "yamlls",
-  "docker_compose_language_service",
-  "dockerls",
-  "gopls",
-  "ruff_lsp",
-  "phpactor",
-  "tailwindcss",
-  "prismals",
-  "bashls",
-  "cssls",
-  "html",
-  "jsonls",
-  "solargraph",
-}
-
 require("mason-lspconfig").setup {
-  ensure_installed = lsps,
+  ensure_installed = {
+    "lua_ls",
+    "vtsls",
+    "eslint",
+    "terraformls",
+    "yamlls",
+    "docker_compose_language_service",
+    "dockerls",
+    "gopls",
+    "ruff_lsp",
+    "phpactor",
+    "tailwindcss",
+    "prismals",
+    "bashls",
+    "cssls",
+    "html",
+    "jsonls",
+    "solargraph",
+  },
 
   handlers = {
     function(server_name)
