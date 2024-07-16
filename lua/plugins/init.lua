@@ -42,11 +42,10 @@ return {
         "gopls",
         "hadolint",
         "html-lsp",
-        "phpactor",
+        "intelephense",
         "isort",
         "json-lsp",
         "lua-language-server",
-        "pint",
         "phpcs",
         "prisma-language-server",
         "ruff-lsp",
@@ -55,6 +54,7 @@ return {
         "sqlfluff",
         "tailwindcss-language-server",
         "terraform-ls",
+        "pyright",
         "tflint",
         "vtsls",
         "yaml-language-server",
@@ -98,18 +98,25 @@ return {
         "ninja",
         "rst",
         "prisma",
+        "json",
       },
     },
   },
   --
   {
     "hrsh7th/nvim-cmp",
-    dependencies = "kristijanhusak/vim-dadbod-completion",
+    lazy = false,
+    dependencies = {
+      { "kristijanhusak/vim-dadbod-completion" },
+      { "petertriho/cmp-git", opts = {} },
+    },
     opts = function()
       local conf = require "nvchad.configs.cmp"
       local cmp = require "cmp"
 
-      conf.source = { name = "vim-dadbod-completion" }
+      cmp.source = { name = "codeium", group_index = 1, priorty = 100 }
+      cmp.source = { name = "vim-dadbod-completion" }
+      cmp.source = { name = "git" }
 
       conf.mapping = {
         ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -240,12 +247,18 @@ return {
     lazy = false,
     opts = {
       view_options = {
-        show_hidden = true
-      }
+        show_hidden = true,
+      },
     },
     keys = {
       { "<leader>pv", ":Oil<cr>" },
     },
     dependencies = { "echasnovski/mini.icons" },
+  },
+  {
+    "Exafunction/codeium.nvim",
+    cmd = "Codeium",
+    build = ":Codeium Auth",
+    opts = {},
   },
 }

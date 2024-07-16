@@ -21,7 +21,7 @@ local on_attach = function(_, bufnr)
 end
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "gopls", "vtsls", "solargraph" }
+local servers = { "html", "cssls", "gopls", "vtsls", "solargraph", "intelephense", "pyright", "ruff_lsp", "eslint" }
 
 -- lsps with default config
 for _, lsp in ipairs(servers) do
@@ -31,29 +31,3 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
-
-lspconfig.yamlls.setup {
-  on_init = on_init,
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = {
-    redhat = { telemetry = { enabled = false } },
-    yaml = {
-      keyOrdering = false,
-      format = {
-        enable = true,
-      },
-      validate = true,
-      schemaStore = {
-        enable = false,
-        url = "",
-      },
-      schemas = {
-        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-        ["../path/relative/to/file.yml"] = "/.github/workflows/*",
-        ["/path/from/root/of/project"] = "/.github/workflows/*",
-        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
-      },
-    },
-  },
-}
