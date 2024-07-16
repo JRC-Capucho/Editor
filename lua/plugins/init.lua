@@ -5,6 +5,7 @@ return {
     build = ":TSUpdate",
     opts = {
       ensure_installed = {
+        "json",
         "vim",
         "sql",
         "lua",
@@ -62,14 +63,13 @@ return {
     "rose-pine/neovim",
     name = "rose-pine",
     opts = {
-      variant = "moon",
       styles = {
         transparency = true,
       },
     },
     config = function(_, opts)
       require("rose-pine").setup(opts)
-      -- vim.cmd.colorscheme "rose-pine"
+      vim.cmd.colorscheme "rose-pine"
     end,
   },
   {
@@ -82,7 +82,7 @@ return {
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      vim.cmd.colorscheme "catppuccin"
+      -- vim.cmd.colorscheme "catppuccin"
     end,
   },
   {
