@@ -27,6 +27,6 @@ require("lualine").setup {
       },
     },
     lualine_x = { "lsp_progress", "filetype" },
-    lualine_z = { "os.date('%a')", "data", "require'lsp-status'.status()" },
+    lualine_z = { "os.date('%I:%M')", "data", "require'lsp-status'.status()" },
   },
 }

@@ -11,7 +11,11 @@ return {
         "lua",
         "vimdoc",
         "jsdoc",
+        "git_config",
         "gitcommit",
+        "git_rebase",
+        "gitignore",
+        "gitattributes",
         "markdown",
         "markdown_inline",
         "html",
@@ -69,7 +73,7 @@ return {
     },
     config = function(_, opts)
       require("rose-pine").setup(opts)
-      vim.cmd.colorscheme "rose-pine"
+      -- vim.cmd.colorscheme "rose-pine"
     end,
   },
   {
@@ -82,7 +86,7 @@ return {
     },
     config = function(_, opts)
       require("catppuccin").setup(opts)
-      -- vim.cmd.colorscheme "catppuccin"
+      vim.cmd.colorscheme "catppuccin"
     end,
   },
   {
@@ -93,11 +97,19 @@ return {
       { "williamboman/mason-lspconfig.nvim" },
       { "neovim/nvim-lspconfig" },
       { "hrsh7th/cmp-nvim-lsp" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-buffer" },
       { "hrsh7th/nvim-cmp" },
       { "j-hui/fidget.nvim", opts = {} },
-      { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
+      { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
+      { "rafamadriz/friendly-snippets" },
       { "kristijanhusak/vim-dadbod-completion" },
-      { "petertriho/cmp-git", opts = {} },
+      {
+        "petertriho/cmp-git",
+        opts = {
+          filetypes = { "gitcommit", "octo", "git_rebase", "NeogitCommitMessage" },
+        },
+      },
       { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
     },
     config = function()
@@ -107,6 +119,17 @@ return {
   },
   {
     "nvim-neotest/neotest",
+    lazy = true,
+    keys = {
+      {
+        "<leader>ts",
+        function()
+          require("neotest").summary.toggle()
+        end,
+        desc = "Toggle DBUI",
+      },
+    },
+    cmd = { "Neotest summary toggle" },
     dependencies = {
       "nvim-neotest/nvim-nio",
       "fredrikaverpil/neotest-golang",
@@ -119,12 +142,6 @@ return {
     },
     config = function()
       require "configs.neotest"
-    end,
-  },
-  {
-    "tpope/vim-fugitive",
-    config = function()
-      require "configs.fugitive"
     end,
   },
   {
@@ -186,10 +203,13 @@ return {
   },
   {
     "Exafunction/codeium.nvim",
-    cmd = "Codeium",
-    build = ":Codeium Auth",
-    opts = {},
+    config = function()
+      require("codeium").setup {
+        enable_chat = true,
+      }
+    end,
   },
+
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
@@ -207,5 +227,55 @@ return {
     config = function()
       require "configs.harpoon"
     end,
+  },
+  {
+    "stevearc/oil.nvim",
+    lazy = false,
+    opts = {
+      view_options = {
+        show_hidden = true,
+      },
+    },
+    keys = {
+      { "<leader>pv", ":Oil<cr>" },
+    },
+  },
+  {
+    "echasnovski/mini.icons",
+    opts = {
+      file = {
+        [".go-version"] = { glyph = "", hl = "MiniIconsBlue" },
+        [".eslintrc.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
+        [".node-version"] = { glyph = "", hl = "MiniIconsGreen" },
+        [".prettierrc"] = { glyph = "", hl = "MiniIconsPurple" },
+        [".yarnrc.yml"] = { glyph = "", hl = "MiniIconsBlue" },
+        ["eslint.config.js"] = { glyph = "󰱺", hl = "MiniIconsYellow" },
+        ["package.json"] = { glyph = "", hl = "MiniIconsGreen" },
+        ["tsconfig.json"] = { glyph = "", hl = "MiniIconsAzure" },
+        ["tsconfig.build.json"] = { glyph = "", hl = "MiniIconsAzure" },
+        ["yarn.lock"] = { glyph = "", hl = "MiniIconsBlue" },
+      },
+      filetype = {
+        gotmpl = { glyph = "󰟓", hl = "MiniIconsGrey" },
+      },
+    },
+    version = false,
+    config = true,
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "sindrets/diffview.nvim",
+      "ibhagwan/fzf-lua",
+    },
+    keys = {
+      {
+        "<leader>gs",
+        function()
+          require("neogit").open()
+        end,
+      },
+    },
+    config = true,
   },
 }

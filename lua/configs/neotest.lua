@@ -11,7 +11,3 @@ require("neotest").setup {
     require "neotest-rspec",
   },
 }
-
-vim.keymap.set("n", "<leader>ts", function()
-  require("neotest").summary.toggle()
-end)
