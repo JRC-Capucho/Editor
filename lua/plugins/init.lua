@@ -98,6 +98,7 @@ return {
       { "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
       { "kristijanhusak/vim-dadbod-completion" },
       { "petertriho/cmp-git", opts = {} },
+      { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
     },
     config = function()
       require "configs.lsp"
@@ -188,5 +189,23 @@ return {
     cmd = "Codeium",
     build = ":Codeium Auth",
     opts = {},
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "letieu/harpoon-lualine",
+      "arkav/lualine-lsp-progress",
+    },
+    config = function()
+      require "configs.lualine"
+    end,
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    config = function()
+      require "configs.harpoon"
+    end,
   },
 }

@@ -1,10 +1,14 @@
+local cmp_autopairs = require "nvim-autopairs.completion.cmp"
 local cmp = require "cmp"
 local cmp_action = require("lsp-zero").cmp_action()
+
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 cmp.setup {
   sources = {
     { name = "nvim_lsp" },
     { name = "git" },
+    { name = "path" },
     { name = "vim-dadbod-completion" },
     { name = "codeium", group_index = 1, priorty = 100 },
     { name = "buffer" },
