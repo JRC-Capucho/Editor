@@ -4,7 +4,10 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
+
       ensure_installed = {
+        "http",
+        "graphql",
         "json",
         "vim",
         "sql",
@@ -289,10 +292,70 @@ return {
   },
   {
     "pwntester/octo.nvim",
+    cmd = "Octo",
     opts = {},
   },
+  { "windwp/nvim-ts-autotag", opts = {} },
   { "kevinhwang91/nvim-bqf", ft = "qf", opts = {} },
   { "akinsho/git-conflict.nvim", version = "*", config = true },
-  { "folke/zen-mode.nvim", opts = {} },
+  {
+    "folke/zen-mode.nvim",
+    opts = {},
+    keys = {
+      {
+        "<leader>zz",
+        function()
+          require("zen-mode").setup {
+            window = {
+              width = 90,
+              options = {},
+            },
+          }
+          require("zen-mode").toggle()
+          vim.wo.wrap = false
+          vim.wo.number = true
+          vim.wo.rnu = true
+        end,
+      },
+      {
+        "<leader>zZ",
+        function()
+          require("zen-mode").setup {
+            window = {
+              width = 80,
+              options = {},
+            },
+          }
+          require("zen-mode").toggle()
+          vim.wo.wrap = false
+          vim.wo.number = false
+          vim.wo.rnu = false
+          vim.opt.colorcolumn = "0"
+        end,
+      },
+    },
+  },
   { "folke/twilight.nvim", opts = {} },
+  {
+    "mistweaverco/kulala.nvim",
+    ft = "http",
+    keys = {
+      { "<leader>R", "", desc = "+Rest" },
+      { "<leader>Rs", "<cmd>lua require('kulala').run()<cr>", desc = "Send the request" },
+      { "<leader>Rt", "<cmd>lua require('kulala').toggle_view()<cr>", desc = "Toggle headers/body" },
+      { "<leader>Rp", "<cmd>lua require('kulala').jump_prev()<cr>", desc = "Jump to previous request" },
+      { "<leader>Rn", "<cmd>lua require('kulala').jump_next()<cr>", desc = "Jump to next request" },
+    },
+    opts = {},
+  },
+  {
+    "nvimdev/dashboard-nvim",
+    event = "VimEnter",
+    opts = function()
+      return require "configs.dashboard"
+    end,
+    config = function(_, opts)
+      require("dashboard").setup(opts)
+    end,
+  },
 }
