@@ -111,6 +111,7 @@ return {
         },
       },
       { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
+      { "roobert/tailwindcss-colorizer-cmp.nvim", opts = { color_square_width = 2 } },
     },
     config = function()
       require "configs.lsp"
@@ -278,4 +279,20 @@ return {
     },
     config = true,
   },
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {},
+  },
+  {
+    "numToStr/Comment.nvim",
+    opts = {},
+  },
+  {
+    "pwntester/octo.nvim",
+    opts = {},
+  },
+  { "kevinhwang91/nvim-bqf", ft = "qf", opts = {} },
+  { "akinsho/git-conflict.nvim", version = "*", config = true },
+  { "folke/zen-mode.nvim", opts = {} },
+  { "folke/twilight.nvim", opts = {} },
 }
