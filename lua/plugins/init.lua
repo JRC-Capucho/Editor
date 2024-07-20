@@ -64,7 +64,7 @@ return {
       keys[#keys + 1] = {
         "<leader>vd",
         function()
-          vim.diagnostic.open_float()
+          vim.diagnostic.open_float({})
         end,
       }
       keys[#keys + 1] = {
@@ -88,7 +88,7 @@ return {
       keys[#keys + 1] = {
         "<leader>vd",
         function()
-          vim.diagnostic.open_float()
+          vim.diagnostic.open_float({ border = "rounded" })
         end,
       }
       keys[#keys + 1] = {
@@ -119,13 +119,13 @@ return {
       keys[#keys + 1] = {
         "[d",
         function()
-          vim.diagnostic.goto_next()
+          vim.diagnostic.goto_next({ float = { border = "rounded" } })
         end,
       }
       keys[#keys + 1] = {
         "]d",
         function()
-          vim.diagnostic.goto_prev()
+          vim.diagnostic.goto_prev({ float = { border = "rounded" } })
         end,
       }
     end,
@@ -178,7 +178,16 @@ return {
       },
     },
   },
-  { "rose-pine/neovim", name = "rose-pine" },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {
+      styles = {
+        bold = false,
+        italic = false,
+      },
+    },
+  },
   {
     "LazyVim/LazyVim",
     opts = {
@@ -193,6 +202,7 @@ return {
 
       opts.window = {
         completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
       }
 
       opts.mapping = {
@@ -225,5 +235,31 @@ return {
       },
       { "<C-\\>", "<cmd>Neotree toggle<cr>" },
     },
+  },
+  {
+    "nvimdev/dashboard-nvim",
+    opts = function(_, opts)
+      local logo = [[
+        ⢰⣧⣼⣯⠄⣸⣠⣶⣶⣦⣾⠄⠄⠄⠄⡀⠄⢀⣿⣿⠄⠄⠄⢸⡇⠄⠄
+        ⣾⣿⠿⠿⠶⠿⢿⣿⣿⣿⣿⣦⣤⣄⢀⡅⢠⣾⣛⡉⠄⠄⠄⠸⢀⣿⠄
+       ⢀⡋⣡⣴⣶⣶⡀⠄⠄⠙⢿⣿⣿⣿⣿⣿⣴⣿⣿⣿⢃⣤⣄⣀⣥⣿⣿⠄
+       ⢸⣇⠻⣿⣿⣿⣧⣀⢀⣠⡌⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠿⠿⣿⣿⣿⠄
+      ⢀⢸⣿⣷⣤⣤⣤⣬⣙⣛⢿⣿⣿⣿⣿⣿⣿⡿⣿⣿⡍⠄⠄⢀⣤⣄⠉⠋⣰
+      ⣼⣖⣿⣿⣿⣿⣿⣿⣿⣿⣿⢿⣿⣿⣿⣿⣿⢇⣿⣿⡷⠶⠶⢿⣿⣿⠇⢀⣤
+     ⠘⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣽⣿⣿⣿⡇⣿⣿⣿⣿⣿⣿⣷⣶⣥⣴⣿⡗
+     ⢀⠈⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡟
+     ⢸⣿⣦⣌⣛⣻⣿⣿⣧⠙⠛⠛⡭⠅⠒⠦⠭⣭⡻⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃
+     ⠘⣿⣿⣿⣿⣿⣿⣿⣿⡆⠄⠄⠄⠄⠄⠄⠄⠄⠹⠈⢋⣽⣿⣿⣿⣿⣵⣾⠃
+      ⠘⣿⣿⣿⣿⣿⣿⣿⣿⠄⣴⣿⣶⣄⠄⣴⣶⠄⢀⣾⣿⣿⣿⣿⣿⣿⠃
+       ⠈⠻⣿⣿⣿⣿⣿⣿⡄⢻⣿⣿⣿⠄⣿⣿⡀⣾⣿⣿⣿⣿⣛⠛⠁
+         ⠈⠛⢿⣿⣿⣿⠁⠞⢿⣿⣿⡄⢿⣿⡇⣸⣿⣿⠿⠛⠁
+            ⠉⠻⣿⣿⣾⣦⡙⠻⣷⣾⣿⠃⠿⠋⠁     ⢀⣠⣴
+     ⣿⣿⣿⣶⣶⣮⣥⣒⠲⢮⣝⡿⣿⣿⡆⣿⡿⠃⠄⠄⠄⠄⠄⠄⠄⣠⣴⣿⣿⣿
+    ]]
+
+      logo = string.rep("\n", 8) .. logo .. "\n\n"
+
+      opts.config.header = vim.split(logo, "\n")
+    end,
   },
 }
