@@ -48,19 +48,6 @@ require("telescope").setup {
     },
   },
   extensions = {
-    ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        borderchars = {
-          { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-          prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
-          results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
-          preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
-        },
-        width = 0.8,
-        previewer = false,
-        prompt_title = false,
-      },
-    },
     fzf = {
       fuzzy = true, -- false will only do exact matching
       override_generic_sorter = true, -- override the generic sorter
@@ -74,7 +61,6 @@ require("telescope").setup {
   },
 }
 
-require("telescope").load_extension "ui-select"
 require("telescope").load_extension "fzy_native"
 require("telescope").load_extension "fzf"
 

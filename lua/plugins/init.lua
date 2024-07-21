@@ -321,7 +321,7 @@ return {
       require("dashboard").setup(opts)
     end,
   },
-  -- { "stevearc/dressing.nvim", opts = {} },
+  { "stevearc/dressing.nvim", opts = {} },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
