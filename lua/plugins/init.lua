@@ -334,6 +334,16 @@ return {
     end,
   },
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+    },
+    keys = {
+      { "<C-\\>", "<cmd>Neotree toggle<cr>" },
+    },
+  },
+  {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
     dependencies = {
