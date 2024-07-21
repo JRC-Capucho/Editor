@@ -4,7 +4,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-
       ensure_installed = {
         "http",
         "graphql",
@@ -61,8 +60,13 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    config = true,
-    init = function()
+    dependencies = {
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      { "nvim-telescope/telescope-fzy-native.nvim" },
+      { "nvim-telescope/telescope-ui-select.nvim" },
+      { "BurntSushi/ripgrep" },
+    },
+    config = function()
       require "configs.telescope"
     end,
   },
@@ -317,6 +321,7 @@ return {
       require("dashboard").setup(opts)
     end,
   },
+  -- { "stevearc/dressing.nvim", opts = {} },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = {
@@ -328,7 +333,6 @@ return {
       require "configs.lualine"
     end,
   },
-
   {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v3.x",
@@ -348,6 +352,11 @@ return {
       { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
       { "roobert/tailwindcss-colorizer-cmp.nvim", opts = { color_square_width = 2 } },
       { "SmiteshP/nvim-navic" },
+      {
+        "akinsho/flutter-tools.nvim",
+        lazy = false,
+        config = true,
+      },
       {
         "petertriho/cmp-git",
         opts = {
