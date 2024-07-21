@@ -8,15 +8,6 @@ require("lualine").setup {
       "branch",
       "filename",
       "navic",
-      {
-        "diagnostics",
-        symbols = {
-          error = "✘ ",
-          warn = "▲ ",
-          hint = "⚑ ",
-          info = "» ",
-        },
-      },
     },
     lualine_c = {
       "%=", -- make the indicator center
@@ -27,7 +18,19 @@ require("lualine").setup {
         _separator = " ",
       },
     },
-    lualine_x = { "lsp_progress", "filetype" },
+    lualine_x = {
+      "lsp_progress",
+      {
+        "diagnostics",
+        symbols = {
+          error = "✘ ",
+          warn = "▲ ",
+          hint = "⚑ ",
+          info = "» ",
+        },
+      },
+      "filetype",
+    },
     lualine_z = { "os.date('%I:%M')", "data", "require'lsp-status'.status()" },
   },
 }

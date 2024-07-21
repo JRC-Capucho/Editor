@@ -63,7 +63,6 @@ return {
     dependencies = {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
       { "nvim-telescope/telescope-fzy-native.nvim" },
-      { "nvim-telescope/telescope-ui-select.nvim" },
       { "BurntSushi/ripgrep" },
     },
     config = function()
@@ -71,29 +70,14 @@ return {
     end,
   },
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    opts = {
-      styles = {
-        transparency = true,
-      },
-    },
-    config = function(_, opts)
-      require("rose-pine").setup(opts)
-      -- vim.cmd.colorscheme "rose-pine"
-    end,
-  },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
+    "scottmckendry/cyberdream.nvim",
+    lazy = false,
     priority = 1000,
-    opts = {
-      flavour = "mocha",
-      transparent_background = true,
-    },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme "catppuccin"
+    config = function()
+      require("cyberdream").setup {
+        transparent = true,
+      }
+      vim.cmd "colorscheme cyberdream"
     end,
   },
   {
@@ -105,10 +89,8 @@ return {
         function()
           require("neotest").summary.toggle()
         end,
-        desc = "Toggle DBUI",
       },
     },
-    cmd = { "Neotest summary toggle" },
     dependencies = {
       "nvim-neotest/nvim-nio",
       "fredrikaverpil/neotest-golang",
@@ -123,6 +105,7 @@ return {
       require "configs.neotest"
     end,
   },
+
   {
     "folke/trouble.nvim",
     opts = {},
@@ -256,10 +239,37 @@ return {
   {
     "pwntester/octo.nvim",
     cmd = "Octo",
-    opts = {},
+    event = { { event = "BufReadCmd", pattern = "octo://*" } },
+    opts = {
+      enable_builtin = true,
+      default_to_projects_v2 = true,
+      default_merge_method = "squash",
+      picker = "telescope",
+    },
+    keys = {
+      { "<leader>gi", "<cmd>Octo issue list<CR>", desc = "List Issues (Octo)" },
+      { "<leader>gI", "<cmd>Octo issue search<CR>", desc = "Search Issues (Octo)" },
+      { "<leader>gp", "<cmd>Octo pr list<CR>", desc = "List PRs (Octo)" },
+      { "<leader>gP", "<cmd>Octo pr search<CR>", desc = "Search PRs (Octo)" },
+      { "<leader>gr", "<cmd>Octo repo list<CR>", desc = "List Repos (Octo)" },
+      { "<leader>gS", "<cmd>Octo search<CR>", desc = "Search (Octo)" },
+
+      { "<leader>a", "", desc = "+assignee (Octo)", ft = "octo" },
+      { "<leader>c", "", desc = "+comment/code (Octo)", ft = "octo" },
+      { "<leader>l", "", desc = "+label (Octo)", ft = "octo" },
+      { "<leader>i", "", desc = "+issue (Octo)", ft = "octo" },
+      { "<leader>r", "", desc = "+react (Octo)", ft = "octo" },
+      { "<leader>p", "", desc = "+pr (Octo)", ft = "octo" },
+      { "<leader>v", "", desc = "+review (Octo)", ft = "octo" },
+      { "@", "@<C-x><C-o>", mode = "i", ft = "octo", silent = true },
+      { "#", "#<C-x><C-o>", mode = "i", ft = "octo", silent = true },
+    },
   },
   { "windwp/nvim-ts-autotag", opts = {} },
-  { "kevinhwang91/nvim-bqf", ft = "qf", opts = {} },
+  { "kevinhwang91/nvim-bqf", ft = "qf", opts = {
+    auto_enable = true,
+    auto_resize_height = true,
+  } },
   { "akinsho/git-conflict.nvim", version = "*", config = true },
   {
     "folke/zen-mode.nvim",
@@ -361,7 +371,14 @@ return {
       { "kristijanhusak/vim-dadbod-completion" },
       { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
       { "roobert/tailwindcss-colorizer-cmp.nvim", opts = { color_square_width = 2 } },
-      { "SmiteshP/nvim-navic" },
+      {
+        "SmiteshP/nvim-navic",
+        opts = {
+          separator = " ",
+          highlight = true,
+          depth_limit = 5,
+        },
+      },
       {
         "akinsho/flutter-tools.nvim",
         lazy = false,
