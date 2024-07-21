@@ -93,35 +93,6 @@ return {
     end,
   },
   {
-    "VonHeikemen/lsp-zero.nvim",
-    branch = "v3.x",
-    dependencies = {
-      { "williamboman/mason.nvim", config = true },
-      { "williamboman/mason-lspconfig.nvim" },
-      { "neovim/nvim-lspconfig" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "saadparwaiz1/cmp_luasnip" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/nvim-cmp" },
-      { "j-hui/fidget.nvim", opts = {} },
-      { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
-      { "rafamadriz/friendly-snippets" },
-      { "kristijanhusak/vim-dadbod-completion" },
-      {
-        "petertriho/cmp-git",
-        opts = {
-          filetypes = { "gitcommit", "octo", "git_rebase", "NeogitCommitMessage" },
-        },
-      },
-      { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
-      { "roobert/tailwindcss-colorizer-cmp.nvim", opts = { color_square_width = 2 } },
-    },
-    config = function()
-      require "configs.lsp"
-      require "configs.cmp"
-    end,
-  },
-  {
     "nvim-neotest/neotest",
     lazy = true,
     keys = {
@@ -211,18 +182,6 @@ return {
       require("codeium").setup {
         enable_chat = true,
       }
-    end,
-  },
-
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = {
-      "nvim-tree/nvim-web-devicons",
-      "letieu/harpoon-lualine",
-      "arkav/lualine-lsp-progress",
-    },
-    config = function()
-      require "configs.lualine"
     end,
   },
   {
@@ -356,6 +315,49 @@ return {
     end,
     config = function(_, opts)
       require("dashboard").setup(opts)
+    end,
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "letieu/harpoon-lualine",
+      "arkav/lualine-lsp-progress",
+    },
+    config = function()
+      require "configs.lualine"
+    end,
+  },
+
+  {
+    "VonHeikemen/lsp-zero.nvim",
+    branch = "v3.x",
+    dependencies = {
+      { "williamboman/mason.nvim", config = true },
+      { "williamboman/mason-lspconfig.nvim" },
+      { "neovim/nvim-lspconfig" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/nvim-cmp" },
+      { "j-hui/fidget.nvim", opts = {} },
+      { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
+      { "rafamadriz/friendly-snippets" },
+      { "kristijanhusak/vim-dadbod-completion" },
+      { "windwp/nvim-autopairs", event = "InsertEnter", opts = {} },
+      { "roobert/tailwindcss-colorizer-cmp.nvim", opts = { color_square_width = 2 } },
+      { "SmiteshP/nvim-navic" },
+      {
+        "petertriho/cmp-git",
+        opts = {
+          filetypes = { "gitcommit", "octo", "git_rebase", "NeogitCommitMessage" },
+        },
+      },
+    },
+    config = function()
+      require "configs.lsp"
+      require "configs.cmp"
     end,
   },
 }

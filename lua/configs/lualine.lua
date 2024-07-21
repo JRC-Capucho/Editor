@@ -7,6 +7,7 @@ require("lualine").setup {
     lualine_b = {
       "branch",
       "filename",
+      "navic",
       {
         "diagnostics",
         symbols = {

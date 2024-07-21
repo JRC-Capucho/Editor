@@ -5,17 +5,15 @@ local cmp_action = require("lsp-zero").cmp_action()
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_snipmate").lazy_load()
 
 cmp.setup {
   sources = {
+    { name = "nvim_lsp", group_index = 1 },
     { name = "luasnip" },
-    { name = "nvim_lsp" },
-    { name = "codeium", group_index = 1, priorty = 100 },
+    { name = "codeium", group_index = 2 },
     { name = "git" },
     { name = "path" },
     { name = "vim-dadbod-completion" },
-    { name = "buffer" },
   },
   window = {
     completion = cmp.config.window.bordered(),
@@ -28,8 +26,8 @@ cmp.setup {
     format = function(entry, item)
       local menu_icon = {
         nvim_lsp = "󰯙",
-        luasnip = "󰐝",
-        buffer = "󰏉",
+        luasnip = "󰏉",
+        git = " ",
         path = "󰣙",
         codeium = "󰮇",
       }
@@ -45,7 +43,7 @@ cmp.setup {
     },
   },
 
-  mapping = cmp.mapping.preset.insert {
+  maping = cmp.mapping.preset.insert {
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
     ["<C-s>;"] = cmp_action.luasnip_supertab(),

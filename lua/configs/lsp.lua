@@ -1,8 +1,15 @@
 local lsp_zero = require "lsp-zero"
+local navic = require "nvim-navic"
 
-lsp_zero.on_attach(function(_, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr }
+
   lsp_zero.default_keymaps(opts)
+
+  if client.server_capabilities.documentSymbolProvider then
+    navic.attach(client, bufnr)
+  end
+
   vim.keymap.set("n", "gd", function()
     vim.lsp.buf.definition()
   end, opts)
@@ -34,6 +41,9 @@ lsp_zero.on_attach(function(_, bufnr)
     vim.diagnostic.goto_prev()
   end, opts)
 end)
+
+local lua_opts = lsp_zero.nvim_lua_ls()
+require("lspconfig").lua_ls.setup(lua_opts)
 
 lsp_zero.set_sign_icons {
   error = "✘",
@@ -109,139 +119,6 @@ require("mason-lspconfig").setup {
     function(server_name)
       require("lspconfig")[server_name].setup {}
     end,
-  },
-}
-
-require("lspconfig").gopls.setup {
-  settings = {
-    gopls = {
-      gofumpt = true,
-      codelenses = {
-        gc_details = false,
-        generate = true,
-        regenerate_cgo = true,
-        run_govulncheck = true,
-        test = true,
-        tidy = true,
-        upgrade_dependency = true,
-        vendor = true,
-      },
-      hints = {
-        assignVariableTypes = true,
-        compositeLiteralFields = true,
-        compositeLiteralTypes = true,
-        constantValues = true,
-        functionTypeParameters = true,
-        parameterNames = true,
-        rangeVariableTypes = true,
-      },
-      analyses = {
-        fieldalignment = true,
-        nilness = true,
-        unusedparams = true,
-        unusedwrite = true,
-        useany = true,
-      },
-      usePlaceholders = true,
-      completeUnimported = true,
-      staticcheck = true,
-      directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
-      semanticTokens = true,
-    },
-  },
-}
-
-require("lspconfig").eslint.setup {
-  settings = {
-    workingDirectories = { mode = "auto" },
-  },
-}
-
-require("lspconfig").vtsls.setup {
-  ft = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx",
-  },
-  root = { "tsconfig.json", "package.json", "jsconfig.json" },
-  settings = {
-    complete_function_calls = true,
-    vtsls = {
-      enableMoveToFileCodeAction = true,
-      autoUseWorkspaceTsdk = true,
-      experimental = {
-        completion = {
-          enableServerSideFuzzyMatch = true,
-        },
-      },
-    },
-    typescript = {
-      updateImportsOnFileMove = { enabled = "always" },
-      suggest = {
-        completeFunctionCalls = true,
-      },
-      inlayHints = {
-        enumMemberValues = { enabled = true },
-        functionLikeReturnTypes = { enabled = true },
-        parameterNames = { enabled = "literals" },
-        parameterTypes = { enabled = true },
-        propertyDeclarationTypes = { enabled = true },
-        variableTypes = { enabled = false },
-      },
-    },
-  },
-}
-
-require("lspconfig").lua_ls.setup {
-  settings = {
-    Lua = {
-      workspace = {
-        checkThirdParty = false,
-      },
-      codeLens = {
-        enable = true,
-      },
-      completion = {
-        callSnippet = "Replace",
-      },
-      doc = {
-        privateName = { "^_" },
-      },
-      hint = {
-        enable = true,
-        setType = false,
-        paramType = true,
-        paramName = "Disable",
-        semicolon = "Disable",
-        arrayIndex = "Disable",
-      },
-    },
-  },
-}
-
-require("lspconfig").yamlls.setup {
-  settings = {
-    redhat = { telemetry = { enabled = false } },
-    yaml = {
-      keyOrdering = false,
-      format = {
-        enable = true,
-      },
-      validate = true,
-      schemaStore = {
-        enable = false,
-        url = "",
-      },
-      schemas = {
-        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-        ["../path/relative/to/file.yml"] = "/.github/workflows/*",
-        ["/path/from/root/of/project"] = "/.github/workflows/*",
-        ["https://raw.githubusercontent.com/instrumenta/kubernetes-json-schema/master/v1.18.0-standalone-strict/all.json"] = "/*.k8s.yaml",
-      },
-    },
   },
 }
 
