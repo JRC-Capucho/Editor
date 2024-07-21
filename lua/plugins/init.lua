@@ -1,8 +1,8 @@
 return {
   { "folke/flash.nvim", enabled = false },
   { "echasnovski/mini.ai", enabled = false },
-  -- { "echasnovski/mini.icons",              enabled = false, },
   { "nvim-pack/nvim-spectre", enabled = false },
+  -- { "echasnovski/mini.icons",              enabled = false, },
   { "folke/which-key.nvim", enabled = false },
   { "folke/todo-comments.nvim", enabled = false },
   { "lukas-reineke/indent-blankline.nvim", enabled = false },
@@ -64,7 +64,7 @@ return {
       keys[#keys + 1] = {
         "<leader>vd",
         function()
-          vim.diagnostic.open_float({})
+          vim.diagnostic.open_float({ border = "rounded" })
         end,
       }
       keys[#keys + 1] = {
@@ -83,12 +83,6 @@ return {
         "<leader>vws",
         function()
           vim.lsp.buf.workspace_symbol()
-        end,
-      }
-      keys[#keys + 1] = {
-        "<leader>vd",
-        function()
-          vim.diagnostic.open_float({ { border = "rounded" } })
         end,
       }
       keys[#keys + 1] = {
@@ -206,10 +200,22 @@ return {
       }
 
       opts.mapping = {
-        ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<C-p>"] = cmp.mapping(function()
+          if cmp.visible() then
+            cmp.select_prev_item({ behavior = "insert" })
+          else
+            cmp.complete()
+          end
+        end),
+        ["<C-n>"] = cmp.mapping(function()
+          if cmp.visible() then
+            cmp.select_next_item({ behavior = "insert" })
+          else
+            cmp.complete()
+          end
+        end),
         ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-Space>"] = cmp.mapping.complete(),
+        ["<C-e>"] = cmp.mapping.abort(),
       }
     end,
   },

@@ -3,11 +3,12 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
+local del = vim.keymap.del
 vim.g.mapleader = " "
 
 map("n", "<leader>pv", vim.cmd.Ex)
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+map("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
 map("n", "<Esc>", "<cmd>nohl<cr>")
 
@@ -42,3 +43,10 @@ map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 map("n", "<leader>f", function()
   vim.lsp.buf.format({ timeout_ms = 2000 })
 end, { desc = "format files" })
+
+del("n", "<A-j>")
+del("n", "<A-k>")
+del("i", "<A-j>")
+del("i", "<A-k>")
+del("v", "<A-j>")
+del("v", "<A-k>")
