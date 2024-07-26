@@ -93,7 +93,7 @@ return {
     keys = {
       { "<leader>t", "", desc = "+test" },
       {
-        "<leader>tt",
+        "<leader>tf",
         function()
           require("neotest").run.run(vim.fn.expand "%")
         end,
