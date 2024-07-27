@@ -76,20 +76,25 @@ return {
     end,
   },
   {
-    "scottmckendry/cyberdream.nvim",
-    lazy = false,
-    priority = 1000,
+    "rose-pine/neovim",
+    name = "rose-pine",
     config = function()
-      require("cyberdream").setup {
-        transparent = true,
+      require("rose-pine").setup {
+        variant = "moon", -- auto, main, moon, or dawn
+        dark_variant = "moon", -- main, moon, or dawn
+        styles = {
+          bold = true,
+          italic = false,
+          transparency = true,
+        },
       }
-      vim.cmd "colorscheme cyberdream"
+
+      vim.cmd "colorscheme rose-pine-moon"
     end,
   },
   {
     "nvim-neotest/neotest",
     lazy = true,
-
     keys = {
       { "<leader>t", "", desc = "+test" },
       {
