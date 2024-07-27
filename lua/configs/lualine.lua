@@ -1,11 +1,18 @@
 require("lualine").setup {
   options = {
+    theme = "rose-pine-alt",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
   },
   sections = {
     lualine_b = {
-      "branch",
+      {
+        "branch",
+        icon = "",
+        -- added = "",
+        -- changed = "",
+        -- removed = "",
+      },
       "filename",
       "navic",
     },
@@ -23,14 +30,19 @@ require("lualine").setup {
       {
         "diagnostics",
         symbols = {
-          error = "✘ ",
-          warn = "▲ ",
-          hint = "⚑ ",
-          info = "» ",
+          Error = " ",
+          Warning = " ",
+          Hint = "󰌶 ",
+          Information = " ",
+          Question = " ",
+          Debug = " ",
+          Ok = "󰧱 ",
         },
       },
+      "fileformat",
       "filetype",
     },
     lualine_z = { "os.date('%I:%M')", "data", "require'lsp-status'.status()" },
   },
+  extensions = { "quickfix", "trouble", "oil" },
 }
