@@ -7,6 +7,7 @@ return {
       ensure_installed = {
         "http",
         "graphql",
+        "jsonc",
         "json",
         "vim",
         "sql",
