@@ -1,6 +1,10 @@
 local lsp_zero = require "lsp-zero"
 local navic = require "nvim-navic"
 
+navic.setup {
+  separator = "  ",
+}
+
 lsp_zero.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr }
 

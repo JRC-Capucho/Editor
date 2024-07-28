@@ -9,9 +9,6 @@ require("lualine").setup {
       {
         "branch",
         icon = "",
-        -- added = "",
-        -- changed = "",
-        -- removed = "",
       },
       "filename",
       "navic",
@@ -20,8 +17,8 @@ require("lualine").setup {
       "%=", -- make the indicator center
       {
         "harpoon2",
-        indicators = { "h", "t", "n", "s" },
-        active_indicators = { "[H]", "[T]", "[N]", "[S]" },
+        indicators = { "h", "j", "k", "l" },
+        active_indicators = { "[H]", "[J]", "[K]", "[L]" },
         _separator = " ",
       },
     },

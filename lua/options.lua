@@ -27,6 +27,9 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
 
+vim.opt.list = true
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
+
 -- vim.opt.colorcolumn = "80"
 
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -36,3 +39,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+vim.filetype.add {
+  extension = {
+    ["http"] = "http",
+  },
+}
