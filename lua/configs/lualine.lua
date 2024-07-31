@@ -1,6 +1,6 @@
 require("lualine").setup {
   options = {
-    theme = "rose-pine-alt",
+    theme = "rose-pine",
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
   },
@@ -10,7 +10,6 @@ require("lualine").setup {
         "branch",
         icon = "",
       },
-      "filename",
       "navic",
     },
     lualine_c = {

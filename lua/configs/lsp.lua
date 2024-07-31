@@ -2,7 +2,7 @@ local lsp_zero = require "lsp-zero"
 local navic = require "nvim-navic"
 
 navic.setup {
-  separator = "  ",
+  separator = "   ",
 }
 
 lsp_zero.on_attach(function(client, bufnr)
@@ -85,7 +85,7 @@ local mason_things = {
   "gopls",
   "hadolint",
   "html-lsp",
-  "phpactor",
+  "intelephense",
   "isort",
   "json-lsp",
   "lua-language-server",
@@ -101,7 +101,6 @@ local mason_things = {
   "tflint",
   "vtsls",
   "yaml-language-server",
-  "hadolint",
 }
 
 require("mason-lspconfig").setup {
@@ -115,7 +114,7 @@ require("mason-lspconfig").setup {
     "dockerls",
     "gopls",
     "ruff_lsp",
-    "phpactor",
+    "intelephense",
     "tailwindcss",
     "prismals",
     "bashls",

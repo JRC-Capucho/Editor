@@ -1,4 +1,40 @@
 return {
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+      require("rose-pine").setup {
+        highlight_groups = {
+          TelescopeBorder = { fg = "overlay", bg = "overlay" },
+          TelescopeNormal = { fg = "subtle", bg = "overlay" },
+          TelescopeSelection = { fg = "text", bg = "highlight_med" },
+          TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
+          TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
+
+          TelescopeTitle = { fg = "base", bg = "love" },
+          TelescopePromptTitle = { fg = "base", bg = "pine" },
+          TelescopePreviewTitle = { fg = "base", bg = "iris" },
+
+          TelescopePromptNormal = { fg = "text", bg = "surface" },
+          TelescopePromptBorder = { fg = "surface", bg = "surface" },
+        },
+      }
+      vim.cmd "colorscheme rose-pine"
+    end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    config = function()
+      local highlights = require "rose-pine.plugins.bufferline"
+      require("bufferline").setup {
+        options = {
+          mode = "tabs",
+        },
+        highlights = highlights,
+      }
+    end,
+  },
   { "nvim-lua/plenary.nvim" },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -77,37 +113,7 @@ return {
       require "configs.telescope"
     end,
   },
-  {
-    "rose-pine/neovim",
-    name = "rose-pine",
-    config = function()
-      require("rose-pine").setup {
-        variant = "moon", -- auto, main, moon, or dawn
-        dark_variant = "moon", -- main, moon, or dawn
-        styles = {
-          bold = true,
-          italic = false,
-          transparency = true,
-        },
-        highlight_groups = {
-          TelescopeBorder = { fg = "overlay", bg = "overlay" },
-          TelescopeNormal = { fg = "subtle", bg = "overlay" },
-          TelescopeSelection = { fg = "text", bg = "highlight_med" },
-          TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
-          TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
 
-          TelescopeTitle = { fg = "base", bg = "love" },
-          TelescopePromptTitle = { fg = "base", bg = "pine" },
-          TelescopePreviewTitle = { fg = "base", bg = "iris" },
-
-          TelescopePromptNormal = { fg = "text", bg = "surface" },
-          TelescopePromptBorder = { fg = "surface", bg = "surface" },
-        },
-      }
-
-      vim.cmd "colorscheme rose-pine-moon"
-    end,
-  },
   {
     "nvim-neotest/neotest",
     lazy = true,
@@ -196,9 +202,26 @@ return {
   {
     "folke/trouble.nvim",
     opts = {},
-    config = function()
-      require "configs.trouble"
-    end,
+    keys = {
+      {
+        "<leader>tt",
+        function()
+          require("trouble").open { mode = "diagnostics" }
+        end,
+      },
+      {
+        "[t",
+        function()
+          require("trouble").next { skip_groups = true, jump = true }
+        end,
+      },
+      {
+        "]t",
+        function()
+          require("trouble").prev { skip_groups = true, jump = true }
+        end,
+      },
+    },
   },
 
   {
