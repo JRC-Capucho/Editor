@@ -5,6 +5,18 @@ local cmp_action = require("lsp-zero").cmp_action()
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 require("luasnip.loaders.from_vscode").lazy_load()
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
 
 cmp.setup {
   sources = {
@@ -16,8 +28,13 @@ cmp.setup {
     { name = "vim-dadbod-completion" },
   },
   window = {
-    completion = cmp.config.window.bordered(),
-    documentation = cmp.config.window.bordered(),
+    completion = {
+      border = border "CmpBorder",
+      scrollbar = false,
+    },
+    documentation = {
+      border = border "CmpDocBorder",
+    },
   },
 
   formatting = {
