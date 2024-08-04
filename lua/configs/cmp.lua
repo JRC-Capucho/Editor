@@ -30,10 +30,13 @@ cmp.setup {
   window = {
     completion = {
       border = border "CmpBorder",
+      -- winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
+      winhighlight = "Normal:CmpPmenu,Search:None",
       scrollbar = false,
     },
     documentation = {
       border = border "CmpDocBorder",
+      winhighlight = "Normal:CmpDoc",
     },
   },
 

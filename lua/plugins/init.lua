@@ -1,37 +1,53 @@
 return {
   {
-    "rose-pine/neovim",
-    name = "rose-pine",
+    "navarasu/onedark.nvim",
     config = function()
-      require("rose-pine").setup {
-        highlight_groups = {
-          TelescopeBorder = { fg = "overlay", bg = "overlay" },
-          TelescopeNormal = { fg = "subtle", bg = "overlay" },
-          TelescopeSelection = { fg = "text", bg = "highlight_med" },
-          TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
-          TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
-
-          TelescopeTitle = { fg = "base", bg = "love" },
-          TelescopePromptTitle = { fg = "base", bg = "pine" },
-          TelescopePreviewTitle = { fg = "base", bg = "iris" },
-
-          TelescopePromptNormal = { fg = "text", bg = "surface" },
-          TelescopePromptBorder = { fg = "surface", bg = "surface" },
+      require("onedark").setup {
+        style = "deep",
+        transparent = true,
+        lualine = {
+          transparent = true,
         },
       }
-      vim.cmd "colorscheme rose-pine"
+      require("onedark").load()
     end,
   },
+  -- {
+  --   "rose-pine/neovim",
+  --   name = "rose-pine",
+  --   config = function()
+  --     require("rose-pine").setup {
+  --       styles = {
+  --         transparency = true,
+  --       },
+  --       highlight_groups = {
+  --         TelescopeBorder = { fg = "overlay", bg = "overlay" },
+  --         TelescopeNormal = { fg = "subtle", bg = "overlay" },
+  --         TelescopeSelection = { fg = "text", bg = "highlight_med" },
+  --         TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
+  --         TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
+  --
+  --         TelescopeTitle = { fg = "base", bg = "love" },
+  --         TelescopePromptTitle = { fg = "base", bg = "pine" },
+  --         TelescopePreviewTitle = { fg = "base", bg = "iris" },
+  --
+  --         TelescopePromptNormal = { fg = "text", bg = "surface" },
+  --         TelescopePromptBorder = { fg = "surface", bg = "surface" },
+  --       },
+  --     }
+  --     vim.cmd "colorscheme rose-pine"
+  --   end,
+  -- },
   {
     "akinsho/bufferline.nvim",
     version = "*",
     config = function()
-      local highlights = require "rose-pine.plugins.bufferline"
+      -- local highlights = require "rose-pine.plugins.bufferline"
       require("bufferline").setup {
         options = {
           mode = "tabs",
         },
-        highlights = highlights,
+        -- highlights = highlights,
       }
     end,
   },
@@ -459,6 +475,7 @@ return {
     branch = "v3.x",
     dependencies = {
       "MunifTanjim/nui.nvim",
+      "3rd/image.nvim",
     },
     keys = {
       { "<C-\\>", "<cmd>Neotree toggle<cr>" },
@@ -485,7 +502,7 @@ return {
       {
         "SmiteshP/nvim-navic",
         opts = {
-          separator = " ",
+          separator = "   ",
           highlight = true,
           depth_limit = 5,
         },
