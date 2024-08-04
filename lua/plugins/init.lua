@@ -1,43 +1,7 @@
 return {
   {
-    "navarasu/onedark.nvim",
-    config = function()
-      require("onedark").setup {
-        style = "deep",
-        transparent = true,
-        lualine = {
-          transparent = true,
-        },
-      }
-      require("onedark").load()
-    end,
+    require "configs.color",
   },
-  -- {
-  --   "rose-pine/neovim",
-  --   name = "rose-pine",
-  --   config = function()
-  --     require("rose-pine").setup {
-  --       styles = {
-  --         transparency = true,
-  --       },
-  --       highlight_groups = {
-  --         TelescopeBorder = { fg = "overlay", bg = "overlay" },
-  --         TelescopeNormal = { fg = "subtle", bg = "overlay" },
-  --         TelescopeSelection = { fg = "text", bg = "highlight_med" },
-  --         TelescopeSelectionCaret = { fg = "love", bg = "highlight_med" },
-  --         TelescopeMultiSelection = { fg = "text", bg = "highlight_high" },
-  --
-  --         TelescopeTitle = { fg = "base", bg = "love" },
-  --         TelescopePromptTitle = { fg = "base", bg = "pine" },
-  --         TelescopePreviewTitle = { fg = "base", bg = "iris" },
-  --
-  --         TelescopePromptNormal = { fg = "text", bg = "surface" },
-  --         TelescopePromptBorder = { fg = "surface", bg = "surface" },
-  --       },
-  --     }
-  --     vim.cmd "colorscheme rose-pine"
-  --   end,
-  -- },
   {
     "akinsho/bufferline.nvim",
     version = "*",
@@ -61,7 +25,6 @@ return {
         "graphql",
         "jsonc",
         "json",
-        "jsonc",
         "vim",
         "sql",
         "lua",
@@ -270,7 +233,6 @@ return {
         lua = { "stylua" },
         python = { "isort", "black" },
         go = { "goimports", "gofumpt" },
-        php = { "pint" },
         terraform = { "terraform_fmt" },
         tf = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },

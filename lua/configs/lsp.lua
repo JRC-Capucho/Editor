@@ -4,6 +4,8 @@ local navic = require "nvim-navic"
 local lsp_attach = function(client, bufnr)
   local opts = { buffer = bufnr }
 
+  lsp_zero.highlight_symbol(client, bufnr)
+
   lsp_zero.default_keymaps(opts)
 
   if client.server_capabilities.documentSymbolProvider then
@@ -45,8 +47,18 @@ end
 lsp_zero.extend_lspconfig {
   capabilities = require("cmp_nvim_lsp").default_capabilities(),
   lsp_attach = lsp_attach,
-  float_border = "rounded",
   sign_text = true,
+  float_border = "rounded",
+}
+
+lsp_zero.ui {
+  float_border = "rounded",
+  sign_text = {
+    error = "✘",
+    warn = "▲",
+    hint = "⚑",
+    info = "»",
+  },
 }
 
 require("flutter-tools").setup {
@@ -57,13 +69,6 @@ require("flutter-tools").setup {
 
 local lua_opts = lsp_zero.nvim_lua_ls()
 require("lspconfig").lua_ls.setup(lua_opts)
-
-lsp_zero.set_sign_icons {
-  error = "✘",
-  warn = "▲",
-  hint = "⚑",
-  info = "»",
-}
 
 require("mason").setup {
   ui = {
@@ -92,7 +97,6 @@ local mason_things = {
   "isort",
   "json-lsp",
   "lua-language-server",
-  "pint",
   "phpcs",
   "prisma-language-server",
   "ruff-lsp",
