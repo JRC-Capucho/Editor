@@ -1,10 +1,8 @@
-local cmp_autopairs = require "nvim-autopairs.completion.cmp"
 local cmp = require "cmp"
 local cmp_action = require("lsp-zero").cmp_action()
 
-cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-
 require("luasnip.loaders.from_vscode").lazy_load()
+
 local function border(hl_name)
   return {
     { "╭", hl_name },
@@ -19,6 +17,10 @@ local function border(hl_name)
 end
 
 cmp.setup {
+  preselect = "item",
+  completion = {
+    completeopt = "menu,menuone,noinsert",
+  },
   sources = {
     { name = "nvim_lsp" },
     { name = "luasnip" },
@@ -30,7 +32,6 @@ cmp.setup {
   window = {
     completion = {
       border = border "CmpBorder",
-      -- winhighlight = "Normal:CmpPmenu,CursorLine:CmpSel,Search:None",
       winhighlight = "Normal:CmpPmenu,Search:None",
       scrollbar = false,
     },
@@ -63,10 +64,11 @@ cmp.setup {
     },
   },
 
-  maping = cmp.mapping.preset.insert {
+  mapping = cmp.mapping.preset.insert {
+    ["<C-y>"] = cmp.mapping.confirm { select = true },
     ["<C-u>"] = cmp.mapping.scroll_docs(-4),
     ["<C-d>"] = cmp.mapping.scroll_docs(4),
-    ["<C-s>;"] = cmp_action.luasnip_supertab(),
-    ["<C-s>,"] = cmp_action.luasnip_shift_supertab(),
+    ["<C-s>;"] = cmp_action.luasnip_jump_forward(),
+    ["<C-s>,"] = cmp_action.luasnip_jump_backward(),
   },
 }

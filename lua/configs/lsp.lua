@@ -1,7 +1,7 @@
 local lsp_zero = require "lsp-zero"
 local navic = require "nvim-navic"
 
-lsp_zero.on_attach(function(client, bufnr)
+local lsp_attach = function(client, bufnr)
   local opts = { buffer = bufnr }
 
   lsp_zero.default_keymaps(opts)
@@ -40,7 +40,14 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set("n", "]d", function()
     vim.diagnostic.goto_prev()
   end, opts)
-end)
+end
+
+lsp_zero.extend_lspconfig {
+  capabilities = require("cmp_nvim_lsp").default_capabilities(),
+  lsp_attach = lsp_attach,
+  float_border = "rounded",
+  sign_text = true,
+}
 
 require("flutter-tools").setup {
   lsp = {
