@@ -1,5 +1,6 @@
 vim.opt.guicursor = ""
 
+vim.opt.inccommand = "split"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.laststatus = 3
