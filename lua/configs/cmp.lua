@@ -32,15 +32,11 @@ cmp.setup {
   window = {
     completion = {
       border = border "CmpBorder",
-      -- winhighlight = "Normal:CmpPmenu,Search:None",
       winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
       scrollbar = false,
     },
     documentation = {
       border = border "CmpBorder",
-      -- winhighlight = "Normal:CmpDoc,FloatBorder:CmpDoc,CursorLine:PmenuSel,Search:None",
-
-      -- winhighlight = "Normal:CmpPmenu,FloatBorder:CmpPmenuBorder,CursorLine:PmenuSel,Search:None",
       winhighlight = "Normal:CmpDoc",
     },
   },
