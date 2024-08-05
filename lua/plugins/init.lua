@@ -6,12 +6,27 @@ return {
     "akinsho/bufferline.nvim",
     version = "*",
     config = function()
+      local mocha = require("catppuccin.palettes").get_palette "mocha"
+      local highlights = require("catppuccin.groups.integrations.bufferline").get {
+        styles = { "italic", "bold" },
+        custom = {
+          all = {
+            fill = { bg = "#000000" },
+          },
+          mocha = {
+            background = { fg = mocha.text },
+          },
+          latte = {
+            background = { fg = "#000000" },
+          },
+        },
+      }
       -- local highlights = require "rose-pine.plugins.bufferline"
       require("bufferline").setup {
         options = {
           mode = "tabs",
         },
-        -- highlights = highlights,
+        highlights = highlights,
       }
     end,
   },
@@ -455,7 +470,16 @@ return {
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/nvim-cmp" },
-      { "j-hui/fidget.nvim", opts = {} },
+      {
+        "j-hui/fidget.nvim",
+        opts = {
+          notification = {
+            window = {
+              winbled = 0,
+            },
+          },
+        },
+      },
       { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
       { "rafamadriz/friendly-snippets" },
       { "kristijanhusak/vim-dadbod-completion" },
@@ -465,7 +489,7 @@ return {
         "SmiteshP/nvim-navic",
         opts = {
           separator = "   ",
-          highlight = true,
+          highlight = false,
           depth_limit = 5,
         },
       },
