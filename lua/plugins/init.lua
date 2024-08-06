@@ -1,33 +1,22 @@
 return {
   {
-    require "configs.color",
-  },
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
+    "rose-pine/neovim",
+    name = "rose-pine",
     config = function()
-      local mocha = require("catppuccin.palettes").get_palette "mocha"
-      local highlights = require("catppuccin.groups.integrations.bufferline").get {
-        styles = { "italic", "bold" },
-        custom = {
-          all = {
-            fill = { bg = "#000000" },
-          },
-          mocha = {
-            background = { fg = mocha.text },
-          },
-          latte = {
-            background = { fg = "#000000" },
-          },
+      require("rose-pine").setup {
+        variant = "moon", -- auto, main, moon, or dawn
+        dark_variant = "moon", -- main, moon, or dawn
+        styles = {
+          bold = true,
+          italic = true,
+          transparency = true,
         },
       }
-      -- local highlights = require "rose-pine.plugins.bufferline"
-      require("bufferline").setup {
-        options = {
-          mode = "tabs",
-        },
-        highlights = highlights,
-      }
+      vim.cmd.colorscheme "rose-pine"
+
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+      vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
     end,
   },
   { "nvim-lua/plenary.nvim" },
@@ -95,6 +84,10 @@ return {
     opts = {
       max_lines = 2,
     },
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    opts = {},
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -332,8 +325,14 @@ return {
     config = true,
   },
   {
-    "NvChad/nvim-colorizer.lua",
-    opts = {},
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require "configs.gitsigns"
+    end,
+  },
+  {
+    "brenoprata10/nvim-highlight-colors",
+    config = true,
   },
   {
     "numToStr/Comment.nvim",
@@ -470,16 +469,7 @@ return {
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-path" },
       { "hrsh7th/nvim-cmp" },
-      {
-        "j-hui/fidget.nvim",
-        opts = {
-          notification = {
-            window = {
-              winbled = 0,
-            },
-          },
-        },
-      },
+      { "j-hui/fidget.nvim", opts = {} },
       { "L3MON4D3/LuaSnip", version = "v2.*", build = "make install_jsregexp" },
       { "rafamadriz/friendly-snippets" },
       { "kristijanhusak/vim-dadbod-completion" },
