@@ -26,6 +26,7 @@ return {
     opts = {
       ensure_installed = {
         "http",
+        "dart",
         "graphql",
         "jsonc",
         "json",
