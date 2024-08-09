@@ -62,7 +62,12 @@ lsp_zero.ui {
 }
 
 require("flutter-tools").setup {
+  -- flutter_path = "/home/zen/.local/bin/flutter/bin/",
+  widget_guides = {
+    enabled = true,
+  },
   lsp = {
+    on_attach = lsp_attach,
     capabilities = lsp_zero.get_capabilities(),
   },
 }
@@ -108,6 +113,7 @@ local mason_things = {
   "tflint",
   "vtsls",
   "yaml-language-server",
+  "delve",
 }
 
 require("mason-lspconfig").setup {

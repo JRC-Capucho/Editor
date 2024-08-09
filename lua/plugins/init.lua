@@ -422,7 +422,13 @@ return {
       { "<leader>Rn", "<cmd>lua require('kulala').jump_next()<cr>", desc = "Jump to next request" },
     },
     config = function()
-      require("kulala").setup {}
+      require("kulala").setup {
+        formatters = {
+          json = { "jq", "." },
+          xml = { "xmllint", "--format", "-" },
+          html = { "xmllint", "--format", "--html", "-" },
+        },
+      }
     end,
   },
   {
@@ -459,6 +465,51 @@ return {
     },
   },
   {
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    build = function()
+      vim.cmd.GoInstallDeps()
+    end,
+    opts = {},
+  },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = "leoluz/nvim-dap-go",
+    ft = "go",
+    keys = {
+      {
+        "<leader>db",
+        function()
+          require("dap").toggle_breakpoint()
+        end,
+        desc = "Toggle Breakpoint",
+      },
+      {
+        "<leader>dus",
+        function()
+          local widgets = require "dap.ui.widgets"
+          local sidebar = widgets.sidebar(widgets.scopes)
+          sidebar.open()
+        end,
+      },
+      {
+        "<leader>dgt",
+        function()
+          require("dap-go").debug_test()
+        end,
+      },
+      {
+        "<leader>dgl",
+        function()
+          require("dap-go").debug_last()
+        end,
+      },
+    },
+    config = function(_, opts)
+      require("dap-go").setup(opts)
+    end,
+  },
+  {
     "VonHeikemen/lsp-zero.nvim",
     branch = "v4.x",
     dependencies = {
@@ -486,8 +537,6 @@ return {
       },
       {
         "akinsho/flutter-tools.nvim",
-        lazy = false,
-        config = true,
       },
       {
         "petertriho/cmp-git",
