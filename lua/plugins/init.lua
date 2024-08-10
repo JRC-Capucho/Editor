@@ -19,6 +19,16 @@ return {
       vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
     end,
   },
+  {
+    "akinsho/bufferline.nvim",
+    priority = 1000,
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require "configs.buffer"
+    end,
+  },
+
   { "nvim-lua/plenary.nvim" },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -460,9 +470,31 @@ return {
       "MunifTanjim/nui.nvim",
       "3rd/image.nvim",
     },
+    opts = {
+      close_if_last_window = true,
+    },
     keys = {
       { "<C-\\>", "<cmd>Neotree toggle<cr>" },
     },
+  },
+  {
+    "anuvyklack/windows.nvim",
+    dependencies = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim",
+    },
+    keys = {
+      { "<C-w>z", "<cmd>WindowsMaximize<cr>" },
+      { "<C-w>-", "<cmd>WindowsMaximizeVertically<cr>" },
+      { "<C-w>|", "<cmd>WindowsMaximizeHorizontally<cr>" },
+      { "<C-w>=", "<cmd>WindowsEqualize<cr>" },
+    },
+    config = function()
+      vim.o.winwidth = 10
+      vim.o.winminwidth = 10
+      vim.o.equalalways = false
+      require("windows").setup()
+    end,
   },
   {
     "olexsmir/gopher.nvim",

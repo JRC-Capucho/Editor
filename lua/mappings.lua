@@ -1,4 +1,5 @@
 local map = vim.keymap.set
+
 vim.g.mapleader = " "
 
 map("n", "<leader>pv", vim.cmd.Ex)
@@ -33,3 +34,7 @@ map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete Buffer" })
