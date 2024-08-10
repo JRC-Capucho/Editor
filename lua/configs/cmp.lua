@@ -22,9 +22,9 @@ cmp.setup {
     completeopt = "menu,menuone",
   },
   sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "codeium", group_index = 2 },
+    { name = "nvim_lsp", priority = 10 },
+    { name = "codeium", priority = 9 },
+    { name = "luasnip", priority = 8 },
     { name = "git" },
     { name = "path" },
     { name = "vim-dadbod-completion" },
