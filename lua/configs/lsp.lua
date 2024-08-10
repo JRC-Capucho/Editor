@@ -76,6 +76,8 @@ local lua_opts = lsp_zero.nvim_lua_ls()
 require("lspconfig").lua_ls.setup(lua_opts)
 
 require("mason").setup {
+  PATH = "prepend",
+  max_concurrent_installers = 10,
   ui = {
     icons = {
       package_installed = "",
