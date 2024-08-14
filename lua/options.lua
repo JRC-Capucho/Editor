@@ -4,6 +4,8 @@ vim.opt.inccommand = "split"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.laststatus = 3
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "both"
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
