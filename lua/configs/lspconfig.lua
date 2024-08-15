@@ -1,33 +1,34 @@
--- EXAMPLE
--- local on_attach = require("nvchad.configs.lspconfig").on_attach
-local on_init = require("nvchad.configs.lspconfig").on_init
-local capabilities = require("nvchad.configs.lspconfig").capabilities
-
-local map = vim.keymap.set
-
-local on_attach = function(_, bufnr)
-  local opts = { buffer = bufnr }
-
-  map("n", "gd", vim.lsp.buf.definition, opts)
-  map("n", "K", vim.lsp.buf.hover, opts)
-  map("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
-  map("n", "<leader>vd", vim.diagnostic.open_float, opts)
-  map("n", "<leader>vca", vim.lsp.buf.code_action, opts)
-  map("n", "<leader>vrr", vim.lsp.buf.references, opts)
-  map("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-  map("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-  map("n", "[d", vim.diagnostic.goto_next, opts)
-  map("n", "]d", vim.diagnostic.goto_prev, opts)
-end
+-- load defaults i.e lua_lsp
+require("nvchad.configs.lspconfig").defaults()
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "gopls", "vtsls", "solargraph", "intelephense", "pyright", "ruff_lsp", "eslint" }
 
--- lsps with default config
-for _, lsp in ipairs(servers) do
-  lspconfig[lsp].setup {
-    on_attach = on_attach,
-    on_init = on_init,
-    capabilities = capabilities,
-  }
+-- EXAMPLE
+local servers = {
+  html = {},
+  cssls = {},
+  vtsls = {},
+  eslint = {},
+  terraformls = {},
+  yamlls = {},
+  docker_compose_language_service = {},
+  dockerls = {},
+  gopls = {},
+  ruff_lsp = {},
+  intelephense = {},
+  tailwindcss = {},
+  prismals = {},
+  bashls = {},
+  jsonls = {},
+  solargraph = {},
+}
+
+local nvlsp = require "nvchad.configs.lspconfig"
+
+for lsp, opts in pairs(servers) do
+  opts.on_attach = nvlsp.on_attach
+  opts.on_init = nvlsp.on_init
+  opts.capabilities = nvlsp.capabilities
+
+  lspconfig[lsp].setup { opts }
 end

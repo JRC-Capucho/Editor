@@ -1,8 +1,8 @@
--- require "nvchad.mappings"
-
 local map = vim.keymap.set
+
 vim.g.mapleader = " "
 
+-- map("n", "<leader>pv", vim.cmd.Ex)
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -35,21 +35,26 @@ map("n", "<leader>j", "<cmd>lprev<CR>zz")
 map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
+map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Delete Buffer" })
+
 -- telescope
 map("n", "<leader>vh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
 map("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "telescope git commits" })
 map("n", "<leader>pf", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
 map("n", "<leader>ps", function()
   return ":Telescope grep_string search=" .. vim.fn.input "Grep > " .. "<cr>"
-end
-, { desc = "telescope find files", expr = true })
+end, { desc = "telescope find files", expr = true })
 
 map("n", "<leader>pws", function()
   return ":Telescope grep_string search=" .. vim.fn.expand "<cword>" .. "<cr>"
-end
-, { desc = "telescope find files", expr = true })
+end, { desc = "telescope find files", expr = true })
 
 map("n", "<leader>pWs", function()
   return ":Telescope grep_string search=" .. vim.fn.expand "<cWORD>" .. "<cr>"
-end
-, { desc = "telescope find files", expr = true })
+end, { desc = "telescope find files", expr = true })
+
+map("n", "<leader>f", function()
+  require("conform").format { async = true, lsp_format = "fallback" }
+end)
