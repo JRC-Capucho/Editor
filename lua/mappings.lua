@@ -27,8 +27,8 @@ map({ "n", "v" }, "<leader>d", [["_d]])
 map("i", "<C-c>", "<Esc>")
 map("i", "<C-[>", "<Esc>")
 
-map("n", "<C-k>", "<cmd>cnext<CR>zz")
-map("n", "<C-j>", "<cmd>cprev<CR>zz")
+map("n", "<C-j>", "<cmd>cnext<CR>zz")
+map("n", "<C-k>", "<cmd>cprev<CR>zz")
 map("n", "<leader>k", "<cmd>lnext<CR>zz")
 map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
@@ -58,3 +58,98 @@ end, { desc = "telescope find files", expr = true })
 map("n", "<leader>f", function()
   require("conform").format { async = true, lsp_format = "fallback" }
 end)
+
+map("n", "<C-\\>", "<cmd>NvimTreeToggle<cr>")
+
+map("n", "<leader>tf", function()
+  require("neotest").run.run(vim.fn.expand "%")
+end)
+
+map("n", "<leader>tT", function()
+  require("neotest").run.run(vim.uv.cwd())
+end)
+
+map("n", "<leader>ts", function()
+  require("neotest").summary.toggle()
+end)
+
+map("n", "<leader>tr", function()
+  require("neotest").run.run()
+end)
+
+map("n", "<leader>tl", function()
+  require("neotest").run.run_last()
+end)
+
+map("n", "<leader>to", function()
+  require("neotest").output.open { enter = true, auto_close = true }
+end)
+
+map("n", "<leader>tO", function()
+  require("neotest").output_panel.toggle()
+end)
+
+map("n", "<leader>tS", function()
+  require("neotest").run.stop()
+end)
+
+map("n", "<leader>tw", function()
+  require("neotest").watch.toggle(vim.fn.expand "%")
+end)
+
+map("n", "<leader>tt", function()
+  require("trouble").open { mode = "diagnostics" }
+end)
+
+map("n", "[t", function()
+  require("trouble").next { skip_groups = true, jump = true }
+end)
+
+map("n", "]t", function()
+  require("trouble").prev { skip_groups = true, jump = true }
+end)
+
+map("n", "<leader>gs", function()
+  require("neogit").open()
+end)
+
+map("n", "<leader>gi", "<cmd>Octo issue list<CR")
+
+map("n", "<leader>gI", "<cmd>Octo issue search<CR>")
+
+map("n", "<leader>gp", "<cmd>Octo pr list<CR>")
+
+map("n", "<leader>gP", "<cmd>Octo pr search<CR>")
+
+map("n", "<leader>gr", "<cmd>Octo repo list<CR")
+
+map("n", "<leader>gS", "<cmd>Octo search<CR>")
+
+map("n", "<leader>zz", function()
+  require("zen-mode").setup {
+    window = {
+      width = 90,
+      options = {},
+    },
+  }
+  require("zen-mode").toggle()
+  vim.wo.wrap = false
+  vim.wo.number = true
+  vim.wo.rnu = true
+end)
+
+map("n", "<leader>zZ", function()
+  require("zen-mode").setup {
+    window = {
+      width = 80,
+      options = {},
+    },
+  }
+  require("zen-mode").toggle()
+  vim.wo.wrap = false
+  vim.wo.number = false
+  vim.wo.rnu = false
+  vim.opt.colorcolumn = "0"
+end)
+
+map("n", "<leader>D", "<cmd>DBUIToggle<CR>")

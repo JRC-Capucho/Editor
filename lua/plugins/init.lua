@@ -1,4 +1,6 @@
 return {
+  { "folke/which-key.nvim", enabled = false },
+
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
@@ -14,102 +16,143 @@ return {
   },
 
   {
-    "nvim-treesitter/nvim-treesitter-context",
-    event = "User FilePost",
-    opts = {
-      max_lines = 2,
-    },
-  },
-
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      { "petertriho/cmp-git", opts = {} },
-      {
-        "Exafunction/codeium.nvim",
-        cmd = "Codeium",
-        build = ":Codeium Auth",
-        opts = {},
-      },
-    },
-    opts = function()
-      local conf = require "nvchad.configs.cmp"
-      local cmp = require "cmp"
-
-      conf.mapping = cmp.mapping.preset.insert {
-        ["<C-y>"] = cmp.mapping.confirm { select = true },
-        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-d>"] = cmp.mapping.scroll_docs(4),
-        ["<C-p>"] = cmp.mapping(function()
-          if cmp.visible() then
-            cmp.select_prev_item { behavior = "insert" }
-          else
-            cmp.complete()
-          end
-        end),
-        ["<C-n>"] = cmp.mapping(function()
-          if cmp.visible() then
-            cmp.select_next_item { behavior = "insert" }
-          else
-            cmp.complete()
-          end
-        end),
-        ["<C-e>"] = cmp.mapping.abort(),
-      }
-
-      table.insert(conf.sources, { name = "git" })
-      table.insert(conf.sources, { name = "vim-dadbod-completion" })
-      table.insert(conf.sources, { name = "codeium", group_index = 1, priorty = 100 })
-
-      return conf
+    "kristijanhusak/vim-dadbod-ui",
+    cmd = { "DBUI", "DBUIToggle", "DBUIAddConnection", "DBUIFindBuffer" },
+    dependencies = { "tpope/vim-dadbod", cmd = "DB" },
+    init = function()
+      vim.g.db_ui_show_database_icon = true
+      vim.g.db_ui_use_nerd_fonts = true
+      vim.g.db_ui_execute_on_save = false
     end,
   },
 
   {
-    "nvim-treesitter/nvim-treesitter",
+    "olexsmir/gopher.nvim",
+    ft = "go",
+    build = function()
+      vim.cmd.GoInstallDeps()
+    end,
+    opts = {},
+  },
+
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "sindrets/diffview.nvim",
+      "ibhagwan/fzf-lua",
+    },
+    opts = {},
+  },
+
+  {
+    "pwntester/octo.nvim",
+    cmd = "Octo",
+    event = { { event = "BufReadCmd", pattern = "octo://*" } },
+    keys = {
+      { "<leader>a", "", desc = "+assignee (Octo)", ft = "octo" },
+      { "<leader>c", "", desc = "+comment/code (Octo)", ft = "octo" },
+      { "<leader>l", "", desc = "+label (Octo)", ft = "octo" },
+      { "<leader>i", "", desc = "+issue (Octo)", ft = "octo" },
+      { "<leader>r", "", desc = "+react (Octo)", ft = "octo" },
+      { "<leader>p", "", desc = "+pr (Octo)", ft = "octo" },
+      { "<leader>v", "", desc = "+review (Octo)", ft = "octo" },
+      { "@", "@<C-x><C-o>", mode = "i", ft = "octo", silent = true },
+      { "#", "#<C-x><C-o>", mode = "i", ft = "octo", silent = true },
+    },
     opts = {
-      ensure_installed = {
-        "lua",
-        "css",
-        "http",
-        "dart",
-        "graphql",
-        "jsonc",
-        "json",
-        "vim",
-        "sql",
-        "vimdoc",
-        "jsdoc",
-        "git_config",
-        "gitcommit",
-        "git_rebase",
-        "gitignore",
-        "gitattributes",
-        "markdown",
-        "markdown_inline",
-        "html",
-        "javascript",
-        "typescript",
-        "tsx",
-        "php",
-        "yaml",
-        "terraform",
-        "hcl",
-        "dockerfile",
-        "c",
-        "zig",
-        "go",
-        "gomod",
-        "gowork",
-        "gosum",
-        "regex",
-        "bash",
-        "ruby",
-        "python",
-        "ninja",
-        "rst",
-        "prisma",
+      enable_builtin = true,
+      default_to_projects_v2 = true,
+      default_merge_method = "squash",
+      picker = "telescope",
+    },
+  },
+
+  {
+    "windwp/nvim-ts-autotag",
+    ft = { "html", "tsx", "jsx" },
+    opts = {},
+  },
+
+  {
+    "kevinhwang91/nvim-bqf",
+    ft = "qf",
+    opts = {
+      auto_enable = true,
+      auto_resize_height = true,
+    },
+  },
+
+  { "akinsho/git-conflict.nvim", version = "*", opts = {} },
+
+  {
+    "folke/zen-mode.nvim",
+    dependencies = { "folke/twilight.nvim", opts = {} },
+    opts = {},
+    {
+      "nvim-treesitter/nvim-treesitter-context",
+      event = "User FilePost",
+      opts = {
+        max_lines = 2,
       },
+    },
+
+    {
+      "nvim-neotest/neotest",
+      dependencies = {
+        "nvim-neotest/nvim-nio",
+        "fredrikaverpil/neotest-golang",
+        "nvim-neotest/neotest-jest",
+        "nvim-neotest/neotest-python",
+        "olimorris/neotest-rspec",
+        "V13Axel/neotest-pest",
+        "marilari88/neotest-vitest",
+        "antoinemadec/FixCursorHold.nvim",
+      },
+      config = function()
+        require "configs.neotest"
+      end,
+    },
+
+    {
+      "folke/trouble.nvim",
+      opts = {},
+    },
+
+    {
+      "hrsh7th/nvim-cmp",
+      dependencies = {
+        { "petertriho/cmp-git", opts = {} },
+      },
+      opts = function()
+        local conf = require "nvchad.configs.cmp"
+        local cmp = require "cmp"
+
+        conf.mapping = cmp.mapping.preset.insert {
+          ["<C-y>"] = cmp.mapping.confirm { select = true },
+          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-d>"] = cmp.mapping.scroll_docs(4),
+          ["<C-p>"] = cmp.mapping(function()
+            if cmp.visible() then
+              cmp.select_prev_item { behavior = "insert" }
+            else
+              cmp.complete()
+            end
+          end),
+          ["<C-n>"] = cmp.mapping(function()
+            if cmp.visible() then
+              cmp.select_next_item { behavior = "insert" }
+            else
+              cmp.complete()
+            end
+          end),
+          ["<C-e>"] = cmp.mapping.abort(),
+        }
+
+        table.insert(conf.sources, { name = "git" })
+        table.insert(conf.sources, { name = "vim-dadbod-completion" })
+
+        return conf
+      end,
     },
   },
 }
