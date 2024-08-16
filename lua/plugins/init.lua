@@ -97,48 +97,50 @@ return {
     dependencies = { "folke/twilight.nvim", opts = {} },
     opts = {},
   },
-    {
-      "nvim-treesitter/nvim-treesitter-context",
-      event = "User FilePost",
-      opts = {
-        max_lines = 2,
-      },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = "User FilePost",
+    opts = {
+      max_lines = 2,
     },
+  },
 
-    {
-      "nvim-neotest/neotest",
-      dependencies = {
-        "nvim-neotest/nvim-nio",
-        "fredrikaverpil/neotest-golang",
-        "nvim-neotest/neotest-jest",
-        "nvim-neotest/neotest-python",
-        "olimorris/neotest-rspec",
-        "V13Axel/neotest-pest",
-        "marilari88/neotest-vitest",
-        "antoinemadec/FixCursorHold.nvim",
-      },
-      config = function()
-        require "configs.neotest"
-      end,
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "fredrikaverpil/neotest-golang",
+      "nvim-neotest/neotest-jest",
+      "nvim-neotest/neotest-python",
+      "olimorris/neotest-rspec",
+      "V13Axel/neotest-pest",
+      "marilari88/neotest-vitest",
+      "antoinemadec/FixCursorHold.nvim",
     },
+    config = function()
+      require "configs.neotest"
+    end,
+  },
 
-    {
-      "folke/trouble.nvim",
-      opts = {},
-    },
+  {
+    "folke/trouble.nvim",
+    opts = {},
+  },
 
-    {
-      "hrsh7th/nvim-cmp",
-      dependencies = {
-        {
-          "petertriho/cmp-git",
-          opts = {
-            filetypes = { "gitcommit", "octo", "git_rebase", "NeogitCommitMessage" },
-          },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "petertriho/cmp-git",
+        opts = {
+          filetypes = { "gitcommit", "octo", "git_rebase", "NeogitCommitMessage" },
         },
       },
-      opts = function()
-        return require "configs.cmp"
-      end,
     },
-  }
+    opts = function()
+      return require "configs.cmp"
+    end,
+  },
+
+  { "wakatime/vim-wakatime", lazy = false },
+}
