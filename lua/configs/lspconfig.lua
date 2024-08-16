@@ -136,7 +136,16 @@ for name, opts in pairs(servers) do
 end
 
 require("flutter-tools").setup {
+  ui = {
+    border = "rounded",
+    notification_style = "native",
+  },
+  widget_guides = {
+    enabled = true,
+  },
   lsp = {
+    on_attach = nvlsp.on_attach,
     capabilities = nvlsp.get_capabilities,
+    on_init = nvlsp.on_init,
   },
 }

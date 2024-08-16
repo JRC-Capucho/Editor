@@ -59,6 +59,10 @@ map("n", "<leader>f", function()
   require("conform").format { async = true, lsp_format = "fallback" }
 end)
 
+map("n", "<leader>pc", function()
+  require("telescope").extensions.flutter.commands()
+end)
+
 map("n", "<C-\\>", "<cmd>NvimTreeToggle<cr>")
 
 map("n", "<leader>tf", function()
