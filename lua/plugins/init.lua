@@ -10,6 +10,15 @@ return {
   -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "akinsho/flutter-tools.nvim",
+      lazy = false,
+      dependencies = {
+        "nvim-lua/plenary.nvim",
+        "stevearc/dressing.nvim",
+      },
+      config = true,
+    },
     config = function()
       require "configs.lspconfig"
     end,
@@ -121,37 +130,15 @@ return {
     {
       "hrsh7th/nvim-cmp",
       dependencies = {
-        { "petertriho/cmp-git", opts = {} },
+        {
+          "petertriho/cmp-git",
+          opts = {
+            filetypes = { "gitcommit", "octo", "git_rebase", "NeogitCommitMessage" },
+          },
+        },
       },
       opts = function()
-        local conf = require "nvchad.configs.cmp"
-        local cmp = require "cmp"
-
-        conf.mapping = cmp.mapping.preset.insert {
-          ["<C-y>"] = cmp.mapping.confirm { select = true },
-          ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-d>"] = cmp.mapping.scroll_docs(4),
-          ["<C-p>"] = cmp.mapping(function()
-            if cmp.visible() then
-              cmp.select_prev_item { behavior = "insert" }
-            else
-              cmp.complete()
-            end
-          end),
-          ["<C-n>"] = cmp.mapping(function()
-            if cmp.visible() then
-              cmp.select_next_item { behavior = "insert" }
-            else
-              cmp.complete()
-            end
-          end),
-          ["<C-e>"] = cmp.mapping.abort(),
-        }
-
-        table.insert(conf.sources, { name = "git" })
-        table.insert(conf.sources, { name = "vim-dadbod-completion" })
-
-        return conf
+        return require "configs.cmp"
       end,
     },
   },
