@@ -96,6 +96,7 @@ return {
     "folke/zen-mode.nvim",
     dependencies = { "folke/twilight.nvim", opts = {} },
     opts = {},
+  },
     {
       "nvim-treesitter/nvim-treesitter-context",
       event = "User FilePost",
@@ -140,5 +141,4 @@ return {
         return require "configs.cmp"
       end,
     },
-  },
-}
+  }
