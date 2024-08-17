@@ -25,8 +25,8 @@ vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 50
 
-vim.opt.list = true
-vim.opt.listchars = { tab = " ", trail = "·", nbsp = "␣" }
+-- vim.opt.list = true
+-- vim.opt.listchars = { tab = " ", trail = "·", nbsp = "␣" }
 -- vim.opt.colorcolumn = "80"
 
 vim.api.nvim_create_autocmd("TextYankPost", {

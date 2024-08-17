@@ -1,5 +1,6 @@
 return {
   { "folke/which-key.nvim", enabled = false },
+  { "lukas-reineke/indent-blankline.nvim", enabled = false },
 
   {
     "stevearc/conform.nvim",
@@ -77,7 +78,7 @@ return {
 
   {
     "windwp/nvim-ts-autotag",
-    ft = { "html", "tsx", "jsx" },
+    event = { "BufNewfile", "BufReadPre" },
     opts = {},
   },
 
