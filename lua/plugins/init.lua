@@ -159,6 +159,8 @@ return {
         opts = {},
     },
 
-    { "akinsho/git-conflict.nvim", version = "*", opts = {} },
+    { "akinsho/git-conflict.nvim",          version = "*", opts = {} },
+
+    { 'brenoprata10/nvim-highlight-colors', opts = {} },
 
 }

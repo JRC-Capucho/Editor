@@ -57,16 +57,18 @@ require('lspconfig').lua_ls.setup({
 })
 
 require("flutter-tools").setup {
-  widget_guides = {
-    enabled = true,
-  },
-  lsp = {
-    on_attach = lsp_attach,
-    capabilities = lsp_zero.get_capabilities(),
-  },
+    ui = {
+        border = "rounded",
+        notification_style = 'native'
+    },
+    widget_guides = {
+        enabled = true,
+    },
+    lsp = {
+        on_attach = lsp_attach,
+        capabilities = lsp_zero.get_capabilities(),
+    },
 }
-
-
 
 local servers = {
     html = {},
