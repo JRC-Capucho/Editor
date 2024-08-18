@@ -31,6 +31,7 @@ lsp_zero.ui({
     },
 })
 
+
 require('lspconfig').lua_ls.setup({
     on_init = function(client)
         lsp_zero.nvim_lua_settings(client, {})
@@ -55,6 +56,18 @@ require('lspconfig').lua_ls.setup({
     },
 })
 
+require("flutter-tools").setup {
+  widget_guides = {
+    enabled = true,
+  },
+  lsp = {
+    on_attach = lsp_attach,
+    capabilities = lsp_zero.get_capabilities(),
+  },
+}
+
+
+
 local servers = {
     html = {},
     cssls = {},
@@ -69,7 +82,6 @@ local servers = {
     prismals = {},
     bashls = {},
     jsonls = {},
-    solargraph = {},
 
     vtsls = {
         filetypes = {
@@ -167,7 +179,6 @@ require('mason-lspconfig').setup({
         'prismals',
         'bashls',
         'jsonls',
-        'solargraph',
     },
 })
 
