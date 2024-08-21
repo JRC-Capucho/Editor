@@ -49,7 +49,6 @@ local servers = {
   prismals = {},
   bashls = {},
   jsonls = {},
-  solargraph = {},
 
   vtsls = {
     filetypes = {
