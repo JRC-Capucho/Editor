@@ -59,6 +59,8 @@ return {
             { "saadparwaiz1/cmp_luasnip" },
             { "rafamadriz/friendly-snippets" },
             { "hrsh7th/cmp-nvim-lua" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
             { "petertriho/cmp-git",          opts = { filetypes = { "gitcommit", "octo", "git_rebase", "NeogitCommitMessage" }, } },
         },
         config = function()

@@ -27,3 +27,5 @@ map("n", "<leader>vh", builtin.help_tags, {})
 map("n", "<leader>pc", function()
     require("telescope").extensions.flutter.commands()
 end)
+
+map("n", "<leader>pt", builtin.treesitter, {})
