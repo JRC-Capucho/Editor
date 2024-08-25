@@ -2,51 +2,9 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-vim.g.lazyvim_php_lsp = "intelephense"
-vim.g.lazy = "intelephense"
-
-vim.g.lazyvim_python_lsp = "pyright"
-vim.g.lazyvim_python_ruff = "ruff_lsp"
-
-vim.g.mapleader = " "
-
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
-
-vim.opt.guicursor = ""
-
-vim.opt.nu = true
-vim.opt.relativenumber = true
-
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
-
-vim.opt.smartindent = true
-
-vim.opt.wrap = false
-
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undofile = true
-
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-
-vim.opt.termguicolors = true
-
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-
-vim.opt.updatetime = 50
-
--- vim.opt.colorcolumn = "80"
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
+vim.o.cursorlineopt = "number"
+vim.o.ignorecase = false
+vim.o.scrolloff = 8
+vim.o.wrap = false
+vim.o.hlsearch = false
+vim.o.incsearch = false
