@@ -54,6 +54,10 @@ map("n", "<leader>pWs", function()
   return ":Telescope grep_string search=" .. vim.fn.expand "<cWORD>" .. "<cr>"
 end, { desc = "telescope find files", expr = true })
 
+map("n", "<leader>pt", function() 
+return ":Telescope treesitter"
+end, {})
+
 map("n", "<leader>f", function()
   require("conform").format { async = true, lsp_format = "fallback" }
 end)
