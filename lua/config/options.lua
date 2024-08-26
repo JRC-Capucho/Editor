@@ -7,4 +7,4 @@ vim.o.ignorecase = false
 vim.o.scrolloff = 8
 vim.o.wrap = false
 vim.o.hlsearch = false
-vim.o.incsearch = false
+vim.o.incsearch = true

@@ -56,27 +56,15 @@ return {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.mapping = cmp.mapping.preset.insert({
-        ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-d>"] = cmp.mapping.scroll_docs(4),
-        ["<C-p>"] = cmp.mapping(function()
-          if cmp.visible() then
-            cmp.select_prev_item({ behavior = "insert" })
-          else
-            cmp.complete()
-          end
-        end),
-        ["<C-n>"] = cmp.mapping(function()
-          if cmp.visible() then
-            cmp.select_next_item({ behavior = "insert" })
-          else
-            cmp.complete()
-          end
-        end),
-        ["<C-e>"] = cmp.mapping.abort(),
-      })
+      local config = require("config.cmp")
+
+      opts.mapping = config.mapping
+
+      ---@diagnostic disable-next-line: missing-fields
+
+      opts.formatting = config.formatting
+
+      opts.window = config.window
     end,
   },
 
@@ -88,6 +76,22 @@ return {
     },
     config = function()
       require("neogit").setup({})
+    end,
+  },
+
+  {
+    "petertriho/cmp-git",
+    opts = {
+      filetypes = { "gitcommit", "octo", "git_rebase", "NeogitCommitMessage" },
+    },
+  },
+
+  {
+    "nvimdev/dashboard-nvim",
+    opts = function(_, opts)
+      local logo = require("config.dashboard")
+
+      opts.config.header = vim.split(logo, "\n")
     end,
   },
 
