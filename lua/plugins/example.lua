@@ -22,6 +22,7 @@ return {
   { import = "lazyvim.plugins.extras.test.core" },
   { import = "lazyvim.plugins.extras.util.octo" },
   { import = "lazyvim.plugins.extras.util.rest" },
+  { import = "lazyvim.plugins.extras.lsp.neoconf" },
 
   { "folke/flash.nvim", enabled = false },
   { "folke/which-key.nvim", enabled = false },
@@ -68,16 +69,17 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
+    ---@diagnostic disable-next-line: undefined-doc-name
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
+      -- vscode format
       local config = require("config.cmp")
-
+      ---@diagnostic disable-next-line: inject-field
       opts.mapping = config.mapping
-
       ---@diagnostic disable-next-line: missing-fields
-
+      ---@diagnostic disable-next-line: inject-field
       opts.formatting = config.formatting
-
+      ---@diagnostic disable-next-line: inject-field
       opts.window = config.window
     end,
   },
@@ -104,7 +106,6 @@ return {
     "nvimdev/dashboard-nvim",
     opts = function(_, opts)
       local logo = require("config.dashboard")
-
       opts.config.header = vim.split(logo, "\n")
     end,
   },
