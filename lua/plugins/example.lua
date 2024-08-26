@@ -24,11 +24,25 @@ return {
   { import = "lazyvim.plugins.extras.util.rest" },
 
   { "folke/flash.nvim", enabled = false },
-  { "echasnovski/mini.ai", enabled = false },
   { "folke/which-key.nvim", enabled = false },
-  { "folke/todo-comments.nvim", enabled = false },
-  { "lukas-reineke/indent-blankline.nvim", enabled = false },
   { "folke/persistence.nvim", enabled = false },
+  { "echasnovski/mini.ai", enabled = false },
+
+  { "folke/todo-comments.nvim", keys = false },
+
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = false,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "stevearc/dressing.nvim",
+    },
+    config = true,
+  },
+
+  { "akinsho/git-conflict.nvim", version = "*", opts = {} },
+
+  { "brenoprata10/nvim-highlight-colors", opts = {} },
 
   {
     "nvim-telescope/telescope.nvim",
