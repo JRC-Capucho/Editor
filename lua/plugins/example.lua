@@ -3,6 +3,7 @@ return {
   { import = "lazyvim.plugins.extras.linting.eslint" },
   { import = "lazyvim.plugins.extras.editor.harpoon2" },
   { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.java" },
   { import = "lazyvim.plugins.extras.test.core" },
   { import = "lazyvim.plugins.extras.lang.docker" },
   { import = "lazyvim.plugins.extras.lang.git" },
@@ -10,7 +11,6 @@ return {
   { import = "lazyvim.plugins.extras.lang.php" },
   { import = "lazyvim.plugins.extras.lang.prisma" },
   { import = "lazyvim.plugins.extras.lang.python" },
-  { import = "lazyvim.plugins.extras.lang.ruby" },
   { import = "lazyvim.plugins.extras.lang.sql" },
   { import = "lazyvim.plugins.extras.lang.tailwind" },
   { import = "lazyvim.plugins.extras.lang.terraform" },
@@ -18,11 +18,11 @@ return {
   { import = "lazyvim.plugins.extras.ui.treesitter-context" },
   { import = "lazyvim.plugins.extras.editor.inc-rename" },
   { import = "lazyvim.plugins.extras.lang.git" },
-  { import = "lazyvim.plugins.extras.coding.codeium" },
   { import = "lazyvim.plugins.extras.test.core" },
   { import = "lazyvim.plugins.extras.util.octo" },
   { import = "lazyvim.plugins.extras.util.rest" },
   { import = "lazyvim.plugins.extras.lsp.neoconf" },
+  { import = "lazyvim.plugins.extras.coding.neogen" },
 
   { "folke/flash.nvim", enabled = false },
   { "folke/which-key.nvim", enabled = false },
@@ -38,7 +38,23 @@ return {
       "nvim-lua/plenary.nvim",
       "stevearc/dressing.nvim",
     },
-    config = true,
+    opts = {
+      widget_guides = {
+        enabled = true,
+      },
+    },
+  },
+
+  {
+    "rose-pine/neovim",
+    lazy = false,
+    priority = 1000,
+    name = "rose-pine",
+    opts = {
+      styles = {
+        transparency = true,
+      },
+    },
   },
 
   { "akinsho/git-conflict.nvim", version = "*", opts = {} },
