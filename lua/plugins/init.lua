@@ -3,6 +3,8 @@ return {
 
     {
         "rose-pine/neovim",
+        priority = 1000,
+        lazy = false,
         name = "rose-pine",
         config = function()
             require('rose-pine').setup({
@@ -47,7 +49,16 @@ return {
     {
         'williamboman/mason.nvim',
         lazy = false,
-        config = true,
+        opts = {
+            max_concurrent_installers = 10,
+            ui = {
+                icons = {
+                    package_installed = "✓",
+                    package_pending = "➜",
+                    package_uninstalled = "✗"
+                }
+            }
+        }
     },
 
     -- Autocompletion
@@ -103,6 +114,7 @@ return {
                 },
             }
         },
+        cmd = { "TSInstall", "TSBufEnable", "TSBufDisable", "TSModuleInfo" },
         build = ":TSUpdate",
         config = function()
             require "config.treesitter"
@@ -111,17 +123,14 @@ return {
 
     {
         'nvim-telescope/telescope.nvim',
+        cmd = "Telescope",
         tag = '0.1.8',
-        config = function()
-            require 'config.telescope'
-        end
+        opts = {}
     },
 
     {
         "folke/trouble.nvim",
-        config = function()
-            require "config.trouble"
-        end
+        opts = {}
     },
 
     {

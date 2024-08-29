@@ -52,8 +52,9 @@ cmp.setup({
     },
     sources = {
         { name = 'nvim_lsp' },
+        { name = "lazydev" },
         { name = 'nvim_lua' },
-        { name = 'luasnip',              option = { use_show_condition = false } },
+        { name = 'luasnip' },
         { name = "git" },
         { name = "vim-dadbod-completion" },
     },

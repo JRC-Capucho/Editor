@@ -15,12 +15,3 @@ neotest.setup {
         require "neotest-rspec",
     },
 }
-
-
-map("n", "<leader>tc", function()
-    neotest.run.run()
-end)
-
-map("n","<leader>ts", function ()
-    neotest.summary.toggle()
-end)
