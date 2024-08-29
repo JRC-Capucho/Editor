@@ -2,6 +2,12 @@ return {
   { "nvim-lua/plenary.nvim" },
 
   {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
+  },
+
+  {
     "rose-pine/neovim",
     priority = 1000,
     lazy = false,
@@ -67,7 +73,7 @@ return {
     event = 'InsertEnter',
     dependencies = {
       { "hrsh7th/cmp-buffer" },
-      { 'L3MON4D3/LuaSnip' },
+      { 'L3MON4D3/LuaSnip',            build = "make install_jsregexp" },
       { "saadparwaiz1/cmp_luasnip" },
       { "rafamadriz/friendly-snippets" },
       { "hrsh7th/cmp-nvim-lua" },
@@ -196,4 +202,23 @@ return {
     },
     opts = {}
   },
+
+  {
+    'pwntester/octo.nvim',
+    cmd = "Octo",
+    event = { { event = "BufReadCmd", pattern = "octo://*" } },
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope.nvim',
+      -- OR 'ibhagwan/fzf-lua',
+      'nvim-tree/nvim-web-devicons',
+    },
+    opts = {
+      enable_builtin = true,
+      default_to_projects_v2 = true,
+      default_merge_method = "squash",
+      picker = "telescope",
+    }
+  },
+
 }
