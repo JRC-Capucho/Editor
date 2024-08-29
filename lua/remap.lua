@@ -29,8 +29,8 @@ map({ "n", "v" }, "<leader>d", [["_d]])
 map("i", "<C-c>", "<Esc>")
 map("i", "<C-[>", "<Esc>")
 
-map("n", "<C-k>", "<cmd>cnext<CR>zz")
-map("n", "<C-j>", "<cmd>cprev<CR>zz")
+map("n", "<C-j>", "<cmd>cnext<CR>zz")
+map("n", "<C-k>", "<cmd>cprev<CR>zz")
 map("n", "<leader>k", "<cmd>lnext<CR>zz")
 map("n", "<leader>j", "<cmd>lprev<CR>zz")
 
