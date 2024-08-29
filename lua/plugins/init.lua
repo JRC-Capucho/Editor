@@ -189,4 +189,11 @@ return {
     opts = {}
   },
 
+  {
+    "folke/zen-mode.nvim",
+    dependencies = {
+      { "folke/twilight.nvim", opts = {} }
+    },
+    opts = {}
+  },
 }
