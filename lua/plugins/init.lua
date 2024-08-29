@@ -1,11 +1,6 @@
 return {
-  { "nvim-lua/plenary.nvim" },
-
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1000,
-    config = true,
-  },
+  { "nvim-lua/plenary.nvim", },
+  { 'tpope/vim-sleuth',      lazy = false },
 
   {
     "rose-pine/neovim",
