@@ -45,14 +45,12 @@ return {
   },
 
   {
-    "rose-pine/neovim",
-    lazy = false,
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
-    name = "rose-pine",
     opts = {
-      styles = {
-        transparency = true,
-      },
+      flavour = "mocha",
+      transparent_background = true,
     },
   },
 
