@@ -1,4 +1,4 @@
-require "remap"
-require "options"
-require "autocmds"
-require "config.lazy"
+require("remap")
+require("options")
+require("autocmds")
+require("config.lazy")

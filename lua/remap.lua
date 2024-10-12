@@ -46,15 +46,15 @@ map("n", "<leader>vh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help 
 map("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "telescope git commits" })
 map("n", "<leader>pf", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
 map("n", "<leader>ps", function()
-  return ":Telescope grep_string search=" .. vim.fn.input "Grep > " .. "<cr>"
+  return ":Telescope grep_string search=" .. vim.fn.input("Grep > ") .. "<cr>"
 end, { desc = "telescope find files", expr = true })
 
 map("n", "<leader>pws", function()
-  return ":Telescope grep_string search=" .. vim.fn.expand "<cword>" .. "<cr>"
+  return ":Telescope grep_string search=" .. vim.fn.expand("<cword>") .. "<cr>"
 end, { desc = "telescope find files", expr = true })
 
 map("n", "<leader>pWs", function()
-  return ":Telescope grep_string search=" .. vim.fn.expand "<cWORD>" .. "<cr>"
+  return ":Telescope grep_string search=" .. vim.fn.expand("<cWORD>") .. "<cr>"
 end, { desc = "telescope find files", expr = true })
 
 map("n", "<leader>pt", "<cmd>Telescope treesitter<cr>", {})
@@ -64,7 +64,7 @@ map("n", "<leader>pc", function()
 end)
 
 map("n", "<leader>tf", function()
-  require("neotest").run.run(vim.fn.expand "%")
+  require("neotest").run.run(vim.fn.expand("%"))
 end)
 
 map("n", "<leader>tT", function()
@@ -84,7 +84,7 @@ map("n", "<leader>tl", function()
 end)
 
 map("n", "<leader>to", function()
-  require("neotest").output.open { enter = true, auto_close = true }
+  require("neotest").output.open({ enter = true, auto_close = true })
 end)
 
 map("n", "<leader>tO", function()
@@ -96,19 +96,19 @@ map("n", "<leader>tS", function()
 end)
 
 map("n", "<leader>tw", function()
-  require("neotest").watch.toggle(vim.fn.expand "%")
+  require("neotest").watch.toggle(vim.fn.expand("%"))
 end)
 
 map("n", "<leader>tt", function()
-  require("trouble").open { mode = "diagnostics" }
+  require("trouble").open({ mode = "diagnostics" })
 end)
 
 map("n", "[t", function()
-  require("trouble").next { skip_groups = true, jump = true }
+  require("trouble").next({ skip_groups = true, jump = true })
 end)
 
 map("n", "]t", function()
-  require("trouble").prev { skip_groups = true, jump = true }
+  require("trouble").prev({ skip_groups = true, jump = true })
 end)
 
 map("n", "<leader>gs", function()
@@ -128,12 +128,12 @@ map("n", "<leader>gr", "<cmd>Octo repo list<CR>")
 map("n", "<leader>gS", "<cmd>Octo search<CR>")
 
 map("n", "<leader>zz", function()
-  require("zen-mode").setup {
+  require("zen-mode").setup({
     window = {
       width = 90,
       options = {},
     },
-  }
+  })
   require("zen-mode").toggle()
   vim.wo.wrap = false
   vim.wo.number = true
@@ -141,12 +141,12 @@ map("n", "<leader>zz", function()
 end)
 
 map("n", "<leader>zZ", function()
-  require("zen-mode").setup {
+  require("zen-mode").setup({
     window = {
       width = 80,
       options = {},
     },
-  }
+  })
   require("zen-mode").toggle()
   vim.wo.wrap = false
   vim.wo.number = false

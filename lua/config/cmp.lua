@@ -41,7 +41,11 @@ cmp.setup({
   },
   sources = {
     { name = 'nvim_lsp' },
-    { name = "buffer" },
+    {
+      name = "lazydev",
+      group_index = 0,
+    },
+    -- { name = "buffer" },
     { name = 'nvim_lua' },
     { name = 'luasnip' },
     { name = "git" },

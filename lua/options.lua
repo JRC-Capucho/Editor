@@ -2,13 +2,16 @@ vim.opt.guicursor = ""
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
+vim.o.numberwidth = 1
+
+vim.g.lazydev_enabled = true
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
-vim.o.cursorline = true
+-- vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 
 vim.opt.smartindent = true
@@ -30,3 +33,9 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+
+vim.filetype.add({
+    pattern = {
+        [".*%.blade%.php"] = "blade",
+    },
+})
