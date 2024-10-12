@@ -2,6 +2,19 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = false },
 
 	{
+		"danymat/neogen",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			require("neogen").setup({})
+			local opts = { noremap = true, silent = true }
+			vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate({ type = 'file' })<CR>", opts)
+			vim.api.nvim_set_keymap("n", "<Leader>ngc", ":lua require('neogen').generate({ type = 'class' })<CR>", opts)
+			vim.api.nvim_set_keymap("n", "<Leader>ngf", ":lua require('neogen').generate({ type = 'func' })<CR>", opts)
+			vim.api.nvim_set_keymap("n", "<Leader>ngt", ":lua require('neogen').generate({ type = 'type' })<CR>", opts)
+		end,
+	},
+
+	{
 		"adalessa/laravel.nvim",
 		dependencies = {
 			"tpope/vim-dotenv",
@@ -52,13 +65,24 @@ return {
 	},
 
 	{
+		"ricardoramirezr/blade-nav.nvim",
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+		ft = { "blade", "php" },
+		opts = {
+			close_tag_on_complete = true,
+		},
+	},
+
+	{
 		"mfussenegger/nvim-lint",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("lint").linters_by_ft = {
 				-- markdown = { "markdownlint" },
 				dockerfile = { "hadolint" },
-				php = { "phpcs" },
+				php = {},
 			}
 
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
@@ -85,7 +109,7 @@ return {
 				ensure_installed = {
 					"cspell",
 					"markdownlint",
-					"phpcs",
+					"pint",
 					"hadolint",
 					"php-cs-fixer",
 					"stylua",
@@ -144,7 +168,7 @@ return {
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
-				php = { "php_cs_fixer" },
+				php = { "pint" },
 				blade = { "blade-formatter" },
 
 				-- Conform can also run multiple formatters sequentially
@@ -261,6 +285,7 @@ return {
 			{ "hrsh7th/cmp-nvim-lua" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
+			{ "hrsh7th/cmp-emoji" },
 			{
 				"petertriho/cmp-git",
 				opts = {

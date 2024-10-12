@@ -38,6 +38,7 @@ treesitter_parser_config.templ = {
 		branch = "master",
 	},
 }
+
 treesitter_parser_config.blade = {
 	install_info = {
 		url = "https://github.com/EmranMR/tree-sitter-blade",

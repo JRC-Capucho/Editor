@@ -1,4 +1,4 @@
-local lsp_zero = require('lsp-zero')
+local lsp_zero = require("lsp-zero")
 
 local lsp_attach = function(client, bufnr)
     local opts = { buffer = bufnr }
@@ -7,35 +7,55 @@ local lsp_attach = function(client, bufnr)
 
     lsp_zero.buffer_autoformat()
 
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set("n", "gd", function()
+        vim.lsp.buf.definition()
+    end, opts)
+    vim.keymap.set("n", "K", function()
+        vim.lsp.buf.hover()
+    end, opts)
+    vim.keymap.set("n", "<leader>vws", function()
+        vim.lsp.buf.workspace_symbol()
+    end, opts)
+    vim.keymap.set("n", "<leader>vd", function()
+        vim.diagnostic.open_float()
+    end, opts)
+    vim.keymap.set("n", "<leader>vca", function()
+        vim.lsp.buf.code_action()
+    end, opts)
+    vim.keymap.set("n", "<leader>vrr", function()
+        vim.lsp.buf.references()
+    end, opts)
+    vim.keymap.set("n", "<leader>vrn", function()
+        vim.lsp.buf.rename()
+    end, opts)
+    vim.keymap.set("i", "<C-h>", function()
+        vim.lsp.buf.signature_help()
+    end, opts)
+    vim.keymap.set("n", "[d", function()
+        vim.diagnostic.goto_next()
+    end, opts)
+    vim.keymap.set("n", "]d", function()
+        vim.diagnostic.goto_prev()
+    end, opts)
 end
 
 lsp_zero.extend_lspconfig({
     sign_text = true,
     lsp_attach = lsp_attach,
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })
 
 lsp_zero.ui({
-    float_border = 'rounded',
+    float_border = "rounded",
     sign_text = {
-        error = '✘',
-        warn = '▲',
-        hint = '⚑',
-        info = '»',
+        error = "✘",
+        warn = "▲",
+        hint = "⚑",
+        info = "»",
     },
 })
 
-require('lspconfig').lua_ls.setup({
+require("lspconfig").lua_ls.setup({
     on_init = function(client)
         lsp_zero.nvim_lua_settings(client, {})
     end,
@@ -46,10 +66,10 @@ require('lspconfig').lua_ls.setup({
             },
             workspace = {
                 library = {
-                    vim.fn.expand "$VIMRUNTIME/lua",
-                    vim.fn.expand "$VIMRUNTIME/lua/vim/lsp",
-                    vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types",
-                    vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy",
+                    vim.fn.expand("$VIMRUNTIME/lua"),
+                    vim.fn.expand("$VIMRUNTIME/lua/vim/lsp"),
+                    vim.fn.stdpath("data") .. "/lazy/ui/nvchad_types",
+                    vim.fn.stdpath("data") .. "/lazy/lazy.nvim/lua/lazy",
                     "${3rd}/luv/library",
                 },
                 maxPreload = 100000,
@@ -59,10 +79,10 @@ require('lspconfig').lua_ls.setup({
     },
 })
 
-require("flutter-tools").setup {
+require("flutter-tools").setup({
     ui = {
         border = "rounded",
-        notification_style = 'native'
+        notification_style = "native",
     },
     widget_guides = {
         enabled = true,
@@ -71,7 +91,7 @@ require("flutter-tools").setup {
         on_attach = lsp_attach,
         capabilities = lsp_zero.get_capabilities(),
     },
-}
+})
 
 local servers = {
     html = {},
@@ -82,7 +102,7 @@ local servers = {
     docker_compose_language_service = {},
     dockerls = {},
     ruff_lsp = {},
-    phpactor = {},
+    intelephense = {},
     tailwindcss = {},
     prismals = {},
     bashls = {},
@@ -163,27 +183,26 @@ local servers = {
             },
         },
     },
-
 }
 
-require('mason-lspconfig').setup({
+require("mason-lspconfig").setup({
     ensure_installed = {
-        'lua_ls',
-        'gopls',
-        'vtsls',
-        'html',
-        'cssls',
-        'eslint',
-        'terraformls',
-        'yamlls',
-        'docker_compose_language_service',
-        'dockerls',
-        'ruff_lsp',
-        'phpactor',
-        'tailwindcss',
-        'prismals',
-        'bashls',
-        'jsonls',
+        "lua_ls",
+        "gopls",
+        "vtsls",
+        "html",
+        "cssls",
+        "eslint",
+        "terraformls",
+        "yamlls",
+        "docker_compose_language_service",
+        "dockerls",
+        "ruff_lsp",
+        "intelephense",
+        "tailwindcss",
+        "prismals",
+        "bashls",
+        "jsonls",
     },
 })
 
