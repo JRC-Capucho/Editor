@@ -51,7 +51,7 @@ return {
 		config = true,
 	},
 
-	{ "tpope/vim-sleuth", lazy = false },
+	{ "tpope/vim-sleuth",      lazy = false },
 
 	{
 		"folke/lazydev.nvim",
@@ -107,7 +107,6 @@ return {
 		config = function()
 			require("mason-tool-installer").setup({
 				ensure_installed = {
-					"cspell",
 					"markdownlint",
 					"pint",
 					"hadolint",
@@ -279,7 +278,7 @@ return {
 		event = "InsertEnter",
 		dependencies = {
 			{ "hrsh7th/cmp-buffer" },
-			{ "L3MON4D3/LuaSnip", build = "make install_jsregexp" },
+			{ "L3MON4D3/LuaSnip",            build = "make install_jsregexp" },
 			{ "saadparwaiz1/cmp_luasnip" },
 			{ "rafamadriz/friendly-snippets" },
 			{ "hrsh7th/cmp-nvim-lua" },
