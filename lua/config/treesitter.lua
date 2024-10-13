@@ -10,6 +10,7 @@ require("nvim-treesitter.configs").setup({
 		"jsdoc",
 		"bash",
 		"php",
+		"html",
 		"markdown",
 		"markdown_inline",
 		"jsonc",
