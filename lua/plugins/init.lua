@@ -2,6 +2,36 @@ return {
 	{ "nvim-lua/plenary.nvim", lazy = false },
 
 	{
+		"OXY2DEV/markview.nvim",
+		lazy = false,
+		-- ft = "markdown"
+
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+
+	{
+		"stevearc/oil.nvim",
+		keys = {
+			{
+				"-",
+				"<CMD>Oil --float<CR>",
+			},
+		},
+		---@module 'oil'
+		---@type oil.SetupOpts
+		opts = {
+			view_options = {
+				show_hidden = true,
+			},
+		},
+		-- Optional dependencies
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+	},
+
+	{
 		"danymat/neogen",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -179,20 +209,19 @@ return {
 		},
 	},
 
-	{
-		"diegoulloao/neofusion.nvim",
-		priority = 1000,
-		lazy = false,
-		config = function()
-			vim.o.background = "dark"
-			vim.cmd.colorscheme("neofusion")
+	--     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	--     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	--     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 
-			--     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-			--     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-			--     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
+	{
+		"eldritch-theme/eldritch.nvim",
+		lazy = false,
+		priority = 1000,
+		opts = {},
+		config = function()
+			vim.cmd.colorscheme("eldritch")
 		end,
 	},
-
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		cmd = { "Neotree" },
