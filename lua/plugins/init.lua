@@ -43,37 +43,6 @@ return {
 			vim.api.nvim_set_keymap("n", "<Leader>ngt", ":lua require('neogen').generate({ type = 'type' })<CR>", opts)
 		end,
 	},
-
-	{
-		"adalessa/laravel.nvim",
-		dependencies = {
-			"tpope/vim-dotenv",
-			-- "nvimtools/none-ls.nvim",
-		},
-		cmd = { "Sail", "Artisan", "Composer", "Npm", "Yarn", "Laravel" },
-		keys = {
-			{ "<leader>la", ":Laravel artisan<cr>" },
-			{ "<leader>lr", ":Laravel routes<cr>" },
-			{ "<leader>lm", ":Laravel related<cr>" },
-		},
-		event = { "VeryLazy" },
-		opts = {
-			features = {
-				null_ls = {
-					enable = false,
-				},
-				route_info = {
-					enable = true,
-					position = "right",
-					middlewares = true,
-					method = true,
-					uri = true,
-				},
-			},
-		},
-		config = true,
-	},
-
 	{
 		"altermo/ultimate-autopair.nvim",
 		event = { "InsertEnter", "CmdlineEnter" },
@@ -112,7 +81,7 @@ return {
 			require("lint").linters_by_ft = {
 				-- markdown = { "markdownlint" },
 				dockerfile = { "hadolint" },
-				php = {},
+				php = { "phpcs" },
 			}
 
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
@@ -141,6 +110,7 @@ return {
 					"pint",
 					"hadolint",
 					"php-cs-fixer",
+					"phpcs",
 					"stylua",
 					"blade-formatter",
 				},
@@ -212,16 +182,18 @@ return {
 	--     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	--     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 	--     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
-
+	--
 	{
-		"eldritch-theme/eldritch.nvim",
+		"rose-pine/neovim",
 		lazy = false,
 		priority = 1000,
-		opts = {},
-		config = function()
-			vim.cmd.colorscheme("eldritch")
+		name = "rose-pine",
+		config = true,
+		init = function()
+			vim.cmd.colorscheme("rose-pine")
 		end,
 	},
+
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		cmd = { "Neotree" },
@@ -238,7 +210,7 @@ return {
 			require("neo-tree").setup({
 				close_if_last_window = true,
 				window = {
-					width = 30,
+					width = 40,
 				},
 				buffers = {
 					follow_current_file = true,
