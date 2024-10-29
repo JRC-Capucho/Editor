@@ -27,6 +27,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
+vim.opt.inccommand = "split"
 
 vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
@@ -36,15 +37,15 @@ vim.opt.updatetime = 50
 vim.opt.showmode = false
 
 vim.opt.fillchars = {
-    eob = " ",
+	eob = " ",
 }
 
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
 
 -- vim.opt.splitkeep = "screen"
 
 vim.filetype.add({
-    pattern = {
-        [".*%.blade%.php"] = "blade",
-    },
+	pattern = {
+		[".*%.blade%.php"] = "blade",
+	},
 })

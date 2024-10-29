@@ -21,7 +21,7 @@ map("x", "<leader>p", [["_dP]])
 map({ "n", "v" }, "<leader>y", [["+y]])
 map("n", "<leader>Y", [["+Y]])
 
-map("n", "<leader>f", vim.lsp.buf.format)
+-- map("n", "<leader>f", vim.lsp.buf.format)
 
 map({ "n", "v" }, "<leader>d", [["_d]])
 
