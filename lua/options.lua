@@ -11,7 +11,7 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
--- vim.o.cursorline = true
+vim.o.cursorline = true
 vim.o.cursorlineopt = "number"
 
 vim.opt.smartindent = true

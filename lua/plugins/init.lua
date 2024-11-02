@@ -13,25 +13,6 @@ return {
 	},
 
 	{
-		"stevearc/oil.nvim",
-		keys = {
-			{
-				"-",
-				"<CMD>Oil --float<CR>",
-			},
-		},
-		---@module 'oil'
-		---@type oil.SetupOpts
-		opts = {
-			view_options = {
-				show_hidden = true,
-			},
-		},
-		-- Optional dependencies
-		dependencies = { { "echasnovski/mini.icons", opts = {} } },
-	},
-
-	{
 		"danymat/neogen",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
@@ -188,8 +169,7 @@ return {
 		lazy = false,
 		priority = 1000,
 		name = "rose-pine",
-		config = true,
-		init = function()
+		config = function()
 			vim.cmd.colorscheme("rose-pine")
 		end,
 	},

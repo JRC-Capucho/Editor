@@ -1,4 +1,5 @@
 require("remap")
-require("options")
 require("autocmds")
+require("options")
 require("config.lazy")
+require("transparency")
