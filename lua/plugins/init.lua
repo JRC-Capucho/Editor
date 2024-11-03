@@ -160,18 +160,30 @@ return {
 		},
 	},
 
-	--     vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	--     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-	--     vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" })
 	--
+	-- {
+	-- 	"rose-pine/neovim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	name = "rose-pine",
+	-- 	config = function()
+	-- 		vim.cmd.colorscheme("rose-pine")
+	-- 	end,
+	-- },
+
 	{
-		"rose-pine/neovim",
+		"ellisonleao/gruvbox.nvim",
 		lazy = false,
 		priority = 1000,
-		name = "rose-pine",
 		config = function()
-			vim.cmd.colorscheme("rose-pine")
-		end,
+			require "gruvbox".setup {
+				transparent_mode = true,
+				contrast = "hard"
+			}
+			vim.o.background = "dark"
+			vim.cmd.colorscheme "gruvbox"
+		end
+
 	},
 
 	{
