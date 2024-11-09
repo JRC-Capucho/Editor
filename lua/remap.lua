@@ -2,156 +2,71 @@ local map = vim.keymap.set
 
 vim.g.mapleader = " "
 
-map("n", "<leader>pv", vim.cmd.Ex)
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
+local opts = { noremap = true, silent = true }
 
-map("n", "<Esc>", "<cmd>nohl<cr>")
 
-map("n", "J", "mzJ`z")
-map("n", "<C-d>", "<C-d>zz")
-map("n", "<C-u>", "<C-u>zz")
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
+map("n", "<leader>pv", vim.cmd.Ex, opts)
+map("v", "J", ":m '>+1<CR>gv=gv", opts)
+map("v", "K", ":m '<-2<CR>gv=gv", opts)
+
+map("n", "<Esc>", "<cmd>nohl<cr>", opts)
+
+map("n", "J", "mzJ`z", opts)
+map("n", "<C-d>", "<C-d>zz", opts)
+map("n", "<C-u>", "<C-u>zz", opts)
+map("n", "n", "nzzzv", opts)
+map("n", "N", "Nzzzv", opts)
 
 -- greatest remap ever
-map("x", "<leader>p", [["_dP]])
+map("x", "<leader>p", [["_dP]], opts)
 
 -- next greatest remap ever : asbjornHaland
-map({ "n", "v" }, "<leader>y", [["+y]])
-map("n", "<leader>Y", [["+Y]])
+map({ "n", "v" }, "<leader>y", [["+y]], opts)
+map("n", "<leader>Y", [["+Y]], opts)
 
--- map("n", "<leader>f", vim.lsp.buf.format)
+-- map("n", "<leader>f", vim.lsp.buf.format,opts)
 
-map({ "n", "v" }, "<leader>d", [["_d]])
+map({ "n", "v" }, "<leader>d", [["_d]], opts)
 
 -- This is going to get me cancelled
-map("i", "<C-c>", "<Esc>")
-map("i", "<C-[>", "<Esc>")
+map("i", "<C-c>", "<Esc>", opts)
+map("i", "<C-[>", "<Esc>", opts)
 
-map("n", "<C-j>", "<cmd>cnext<CR>zz")
-map("n", "<C-k>", "<cmd>cprev<CR>zz")
-map("n", "<leader>k", "<cmd>lnext<CR>zz")
-map("n", "<leader>j", "<cmd>lprev<CR>zz")
+map("n", "<C-j>", "<cmd>cnext<CR>zz", opts)
+map("n", "<C-k>", "<cmd>cprev<CR>zz", opts)
 
-map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-map("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+map("n", "<leader>k", "<cmd>lnext<CR>zz", opts)
+map("n", "<leader>j", "<cmd>lprev<CR>zz", opts)
+
+map("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], opts)
+map("n", "<leader>x", "<cmd>!chmod +x %<CR>", opts)
 
 map("n", "<leader><leader>", function()
   vim.cmd("so")
-end)
+end, opts)
 
--- telescope
-map("n", "<leader>vh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
-map("n", "<C-p>", "<cmd>Telescope git_files<CR>", { desc = "telescope git commits" })
-map("n", "<leader>pf", "<cmd>Telescope find_files<cr>", { desc = "telescope find files" })
-map("n", "<leader>ps", function()
-  return ":Telescope grep_string search=" .. vim.fn.input("Grep > ") .. "<cr>"
-end, { desc = "telescope find files", expr = true })
+-- Increment/decrement
+map("n", "+", "<C-a>", opts)
+map("n", "-", "<C-x>", opts)
 
-map("n", "<leader>pws", function()
-  return ":Telescope grep_string search=" .. vim.fn.expand("<cword>") .. "<cr>"
-end, { desc = "telescope find files", expr = true })
+-- Select all
+map("n", "<C-a>", "gg<S-v>G", opts)
 
-map("n", "<leader>pWs", function()
-  return ":Telescope grep_string search=" .. vim.fn.expand("<cWORD>") .. "<cr>"
-end, { desc = "telescope find files", expr = true })
+-- Split window
+map("n", "ss", ":split<Return>", opts)
+map("n", "sv", ":vsplit<Return>", opts)
+-- Move window
+map("n", "sh", "<C-w>h", opts)
+map("n", "sk", "<C-w>k", opts)
+map("n", "sj", "<C-w>j", opts)
+map("n", "sl", "<C-w>l", opts)
 
-map("n", "<leader>pt", "<cmd>Telescope treesitter<cr>", {})
+-- Resize with arrows
+map('n', '<Up>', ':resize -2<CR>', opts)
+map('n', '<Down>', ':resize +2<CR>', opts)
+map('n', '<Left>', ':vertical resize -2<CR>', opts)
+map('n', '<Right>', ':vertical resize +2<CR>', opts)
 
-map("n", "<leader>pc", function()
-  require("telescope").extensions.flutter.commands()
-end)
-
-map("n", "<leader>tf", function()
-  require("neotest").run.run(vim.fn.expand("%"))
-end)
-
-map("n", "<leader>tT", function()
-  require("neotest").run.run(vim.uv.cwd())
-end)
-
-map("n", "<leader>ts", function()
-  require("neotest").summary.toggle()
-end)
-
-map("n", "<leader>tr", function()
-  require("neotest").run.run()
-end)
-
-map("n", "<leader>tl", function()
-  require("neotest").run.run_last()
-end)
-
-map("n", "<leader>to", function()
-  require("neotest").output.open({ enter = true, auto_close = true })
-end)
-
-map("n", "<leader>tO", function()
-  require("neotest").output_panel.toggle()
-end)
-
-map("n", "<leader>tS", function()
-  require("neotest").run.stop()
-end)
-
-map("n", "<leader>tw", function()
-  require("neotest").watch.toggle(vim.fn.expand("%"))
-end)
-
-map("n", "<leader>tt", function()
-  require("trouble").open({ mode = "diagnostics" })
-end)
-
-map("n", "[t", function()
-  require("trouble").next({ skip_groups = true, jump = true })
-end)
-
-map("n", "]t", function()
-  require("trouble").prev({ skip_groups = true, jump = true })
-end)
-
-map("n", "<leader>gs", function()
-  require("neogit").open()
-end)
-
-map("n", "<leader>gi", "<cmd>Octo issue list<CR>")
-
-map("n", "<leader>gI", "<cmd>Octo issue search<CR>")
-
-map("n", "<leader>gp", "<cmd>Octo pr list<CR>")
-
-map("n", "<leader>gP", "<cmd>Octo pr search<CR>")
-
-map("n", "<leader>gr", "<cmd>Octo repo list<CR>")
-
-map("n", "<leader>gS", "<cmd>Octo search<CR>")
-
-map("n", "<leader>zz", function()
-  require("zen-mode").setup({
-    window = {
-      width = 90,
-      options = {},
-    },
-  })
-  require("zen-mode").toggle()
-  vim.wo.wrap = false
-  vim.wo.number = true
-  vim.wo.rnu = true
-end)
-
-map("n", "<leader>zZ", function()
-  require("zen-mode").setup({
-    window = {
-      width = 80,
-      options = {},
-    },
-  })
-  require("zen-mode").toggle()
-  vim.wo.wrap = false
-  vim.wo.number = false
-  vim.wo.rnu = false
-  vim.opt.colorcolumn = "0"
-end)
-
-map("n", "<leader>D", "<cmd>DBUIToggle<CR>")
+-- Stay in indent mode
+map('v', '<', '<gv', opts)
+map('v', '>', '>gv', opts)

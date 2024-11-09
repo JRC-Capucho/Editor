@@ -1,48 +1,56 @@
-vim.opt.guicursor = ""
+local opt = vim.opt
+local o = vim.o
 
-vim.opt.nu = true
-vim.opt.relativenumber = true
-vim.o.numberwidth = 1
+opt.encoding = "utf-8"
+opt.fileencoding = "utf-8"
+
+opt.guicursor = ""
+
+opt.nu = true
+opt.relativenumber = true
+o.numberwidth = 1
 
 vim.g.lazydev_enabled = true
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.shiftwidth = 2
+opt.expandtab = true
 
-vim.o.cursorline = true
-vim.o.cursorlineopt = "number"
+o.cursorline = false
+-- o.cursorlineopt = "number"
 
+opt.autoindent = true
 vim.opt.smartindent = true
+opt.smarttab = true
 
-vim.opt.wrap = false
+opt.wrap = false
 
-vim.opt.swapfile = false
-vim.opt.backup = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
-vim.opt.undofile = true
+opt.swapfile = false
+opt.backup = false
+opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+opt.undofile = true
+opt.backspace = { "start", "eol", "indent" }
+opt.cmdheight = 2
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
+opt.hlsearch = false
+opt.incsearch = true
 
-vim.opt.termguicolors = true
-vim.opt.inccommand = "split"
+opt.termguicolors = true
+opt.inccommand = "split"
 
-vim.opt.scrolloff = 8
-vim.opt.signcolumn = "yes"
-vim.opt.isfname:append("@-@")
+opt.scrolloff = 8
+opt.signcolumn = "yes"
+opt.isfname:append("@-@")
 
-vim.opt.updatetime = 50
-vim.opt.showmode = false
+opt.updatetime = 50
+opt.showmode = false
 
-vim.opt.fillchars = {
+opt.fillchars = {
 	eob = " ",
 }
 
-vim.opt.laststatus = 0
-
--- vim.opt.splitkeep = "screen"
+opt.laststatus = 0
 
 vim.filetype.add({
 	pattern = {
