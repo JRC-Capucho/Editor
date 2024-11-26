@@ -52,7 +52,7 @@ cmp.setup({
 		{ name = "vim-dadbod-completion" },
 	},
 	mapping = cmp.mapping.preset.insert({
-		["<C-y>"] = cmp.mapping.confirm({ select = true }),
+		["<CR>"] = cmp.mapping.confirm({ select = true }),
 		["<C-u>"] = cmp.mapping.scroll_docs(-4),
 		["<C-d>"] = cmp.mapping.scroll_docs(4),
 		["<C-e>"] = cmp.mapping.abort(),
@@ -87,7 +87,7 @@ cmp.setup({
 
 		format = function(entry, item)
 			local menu_icon = {
-				nvim_lsp = "",
+				nvim_lsp = "",
 				luasnip = "",
 				git = " ",
 				path = "󰣙",

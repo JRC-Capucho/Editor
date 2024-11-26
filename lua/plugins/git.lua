@@ -3,7 +3,7 @@ return {
 	{
 		"akinsho/git-conflict.nvim",
 		version = "*",
-		opts = {}
+		opts = {},
 	},
 
 	{
@@ -48,7 +48,5 @@ return {
 			default_merge_method = "squash",
 			picker = "telescope",
 		},
-	}
-
-
+	},
 }

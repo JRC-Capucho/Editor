@@ -199,7 +199,7 @@ require("mason-lspconfig").setup({
 		"dockerls",
 		"ruff_lsp",
 		"intelephense",
-		"tailwincss",
+		"tailwindcss",
 		"prismals",
 		"bashls",
 		"jsonls",
