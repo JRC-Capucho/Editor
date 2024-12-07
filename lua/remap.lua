@@ -4,7 +4,6 @@ vim.g.mapleader = " "
 
 local opts = { noremap = true, silent = true }
 
-
 map("n", "<leader>pv", vim.cmd.Ex, opts)
 map("v", "J", ":m '>+1<CR>gv=gv", opts)
 map("v", "K", ":m '<-2<CR>gv=gv", opts)
@@ -45,28 +44,12 @@ map("n", "<leader><leader>", function()
   vim.cmd("so")
 end, opts)
 
--- Increment/decrement
-map("n", "+", "<C-a>", opts)
-map("n", "-", "<C-x>", opts)
-
--- Select all
-map("n", "<C-a>", "gg<S-v>G", opts)
-
--- Split window
-map("n", "ss", ":split<Return>", opts)
-map("n", "sv", ":vsplit<Return>", opts)
--- Move window
-map("n", "sh", "<C-w>h", opts)
-map("n", "sk", "<C-w>k", opts)
-map("n", "sj", "<C-w>j", opts)
-map("n", "sl", "<C-w>l", opts)
-
 -- Resize with arrows
-map('n', '<Up>', ':resize -2<CR>', opts)
-map('n', '<Down>', ':resize +2<CR>', opts)
-map('n', '<Left>', ':vertical resize -2<CR>', opts)
-map('n', '<Right>', ':vertical resize +2<CR>', opts)
+map("n", "<Up>", ":resize -2<CR>", opts)
+map("n", "<Down>", ":resize +2<CR>", opts)
+map("n", "<Left>", ":vertical resize -2<CR>", opts)
+map("n", "<Right>", ":vertical resize +2<CR>", opts)
 
 -- Stay in indent mode
-map('v', '<', '<gv', opts)
-map('v', '>', '>gv', opts)
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
