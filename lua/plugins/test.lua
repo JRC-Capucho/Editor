@@ -15,48 +15,48 @@ return {
 			"<leader>tf",
 			function()
 				require("neotest").run.run(vim.fn.expand("%"))
-			end
+			end,
 		},
 		{
 			"<leader>tT",
 			function()
 				require("neotest").run.run(vim.uv.cwd())
-			end
+			end,
 		},
 		{
 			"<leader>ts",
 			function()
 				require("neotest").summary.toggle()
-			end
+			end,
 		},
 		{
 			"<leader>tr",
 			function()
 				require("neotest").run.run()
-			end
+			end,
 		},
 		{
 			"<leader>tl",
 			function()
 				require("neotest").run.run_last()
-			end
-		}
+			end,
+		},
 	},
 	config = function()
-		local neotest = require "neotest"
+		local neotest = require("neotest")
 
-		neotest.setup {
+		neotest.setup({
 			adapters = {
-				require "neotest-python" {
+				require("neotest-python")({
 					dap = { justMyCode = false },
-				},
-				require "neotest-vitest",
-				require "neotest-python",
-				require "neotest-pest",
-				require "neotest-golang",
-				require "neotest-jest",
-				require "neotest-rspec",
+				}),
+				require("neotest-vitest"),
+				require("neotest-python"),
+				require("neotest-pest"),
+				require("neotest-golang"),
+				require("neotest-jest"),
+				require("neotest-rspec"),
 			},
-		}
+		})
 	end,
 }

@@ -1,29 +1,17 @@
 return {
-
 	{
-		"akinsho/git-conflict.nvim",
-		version = "*",
-		opts = {},
-	},
-
-	{
-
-		"NeogitOrg/neogit",
-		dependencies = {
-			"sindrets/diffview.nvim",
-			"ibhagwan/fzf-lua",
-		},
-		keys = {
-			{
-				"<leader>gs",
-				function()
-					require("neogit").open()
-				end,
+		"lewis6991/gitsigns.nvim",
+		event = "BufReadPost",
+		opts = {
+			signs = {
+				add = { text = "+" },
+				change = { text = "~" },
+				delete = { text = "_" },
+				topdelete = { text = "‾" },
+				changedelete = { text = "~" },
 			},
 		},
-		config = true,
 	},
-
 	{
 		"pwntester/octo.nvim",
 		cmd = "Octo",
