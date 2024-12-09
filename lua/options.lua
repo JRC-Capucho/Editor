@@ -47,13 +47,13 @@ opt.updatetime = 50
 opt.showmode = false
 
 opt.fillchars = {
-	eob = " ",
+    eob = " ",
 }
 
-opt.laststatus = 0
+opt.laststatus = 3
 
 vim.filetype.add({
-	pattern = {
-		[".*%.blade%.php"] = "blade",
-	},
+    pattern = {
+        [".*%.blade%.php"] = "blade",
+    },
 })

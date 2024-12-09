@@ -82,5 +82,5 @@ cmp.setup({
 		end,
 	},
 
-	formatting = cmp_format
+	formatting = cmp_format,
 })
