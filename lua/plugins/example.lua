@@ -1,6 +1,38 @@
 -- since this is just an example spec, don't actually load anything here and return an empty spec
 -- stylua: ignore
-if true then return {} end
+if true then return {
+    {
+        'folke/flash.nvim',
+        enabled = false
+    },
+    {
+        "williamboman/mason.nvim",
+        opts = {
+            ensure_installed = {
+                "phpstan",
+                "pint",
+                "stylua",
+                "shfmt",
+            },
+        },
+    },
+    {
+        "mfussenegger/nvim-lint",
+        opts = {
+            linters_by_ft = {
+                php = { "phpstan" },
+            },
+        }
+    },
+    {
+        "stevearc/conform.nvim",
+        opts = {
+            formatters_by_ft = {
+                php = { "pint" },
+            },
+        },
+    }
+} end
 
 -- every spec file under the "plugins" directory will be loaded automatically by lazy.nvim
 --
